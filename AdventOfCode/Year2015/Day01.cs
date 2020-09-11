@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace AdventOfCode.Year2015
 {
-
     public class Day01
     {
         public string Part1(string input)
@@ -20,7 +18,20 @@ namespace AdventOfCode.Year2015
 
         public string Part2(string input)
         {
-            return null;
+            int floor = 0;
+            int position = 0;
+            for (int i = 0; i < input.Length; i++)
+            {
+                // shorthand for incrementing or decrementing based on character
+                floor += input[i] == '(' ? 1 : -1;
+
+                if (floor < 0)
+                {
+                    position = i + 1;
+                    break;
+                }
+            }
+            return position.ToString();
         }
     }
 }
