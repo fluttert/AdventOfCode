@@ -4,6 +4,9 @@ namespace AdventOfCode.Year2015
 {
     public class Day01
     {
+
+        // Challenge can be found on https://adventofcode.com/2015/day/1
+
         public string Part1(string input)
         {
             int floor = 0;

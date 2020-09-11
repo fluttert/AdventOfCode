@@ -12,7 +12,7 @@ namespace AdventOfCode
             stopwatch.Start();
             
             // Change this to the day you want to run
-            aoc.Year2015Day01();
+            aoc.Year2015Day02();
             
             // timing
             Console.WriteLine("");
@@ -20,10 +20,17 @@ namespace AdventOfCode
             Console.ReadLine();
         }
 
+        public void Year2015Day02()
+        {
+            var day = new Year2015.Day02();
+            Console.WriteLine($"Day 02, part 1: {day.Part1(Inputs.Year2015.Day02.Input)}");
+            Console.WriteLine($"Day 02, part 2: {day.Part2(Inputs.Year2015.Day02.Input)}");
+        }
+
         public void Year2015Day01() {
-            var Day01 = new Year2015.Day01();
-            Console.WriteLine($"Day 01, part 1: {Day01.Part1(Inputs.Year2015.Day01.Input)}");
-            Console.WriteLine($"Day 01, part 2: {Day01.Part2(Inputs.Year2015.Day01.Input)}");
+            var day = new Year2015.Day01();
+            Console.WriteLine($"Day 01, part 1: {day.Part1(Inputs.Year2015.Day01.Input)}");
+            Console.WriteLine($"Day 01, part 2: {day.Part2(Inputs.Year2015.Day01.Input)}");
         }
     }
 }
