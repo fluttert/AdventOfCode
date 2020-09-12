@@ -5,6 +5,8 @@ namespace AdventOfCode.Year2015
 {
     public class Day04 : IAoC
     {
+        // Challenge can be found on https://adventofcode.com/2015/day/4
+
         public string input = "yzbqklnj";
 
         public string SolvePart1(string input)
