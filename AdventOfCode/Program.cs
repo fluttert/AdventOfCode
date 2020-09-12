@@ -12,7 +12,8 @@ namespace AdventOfCode
             stopwatch.Start();
 
             // Change this to the day you want to run
-            aoc.Solve(new Year2015.Day02(), Inputs.Year2015.Day02.Input);
+            aoc.Solve(new Year2015.Day03(), Inputs.Year2015.Day03.Input);
+            //aoc.Solve(new Year2015.Day02(), Inputs.Year2015.Day02.Input);
             //aoc.Solve(new Year2015.Day01(), Inputs.Year2015.Day01.Input);
 
             // timing
