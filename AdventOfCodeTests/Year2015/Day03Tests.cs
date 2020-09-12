@@ -18,7 +18,9 @@ namespace AdventOfCodeTests
         [Fact]
         public void Part02()
         {
-           
+            Assert.Equal("3", day.SolvePart2("^v"));
+            Assert.Equal("3", day.SolvePart2("^>v<"));
+            Assert.Equal("11", day.SolvePart2("^v^v^v^v^v"));
         }
     }
 }
