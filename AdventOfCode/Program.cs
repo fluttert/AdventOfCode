@@ -3,34 +3,28 @@ using System.Diagnostics;
 
 namespace AdventOfCode
 {
-    class AdventOfCode
+    internal class AdventOfCode
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var aoc = new AdventOfCode();
             var stopwatch = new Stopwatch();
             stopwatch.Start();
-            
+
             // Change this to the day you want to run
-            aoc.Year2015Day02();
-            
+            aoc.Solve(new Year2015.Day02(), Inputs.Year2015.Day02.Input);
+            //aoc.Solve(new Year2015.Day01(), Inputs.Year2015.Day01.Input);
+
             // timing
             Console.WriteLine("");
             Console.WriteLine($"Execution time was about {stopwatch.ElapsedMilliseconds}ms");
             Console.ReadLine();
         }
 
-        public void Year2015Day02()
+        public void Solve(IAoC aoc, string input)
         {
-            var day = new Year2015.Day02();
-            Console.WriteLine($"Day 02, part 1: {day.Part1(Inputs.Year2015.Day02.Input)}");
-            Console.WriteLine($"Day 02, part 2: {day.Part2(Inputs.Year2015.Day02.Input)}");
-        }
-
-        public void Year2015Day01() {
-            var day = new Year2015.Day01();
-            Console.WriteLine($"Day 01, part 1: {day.Part1(Inputs.Year2015.Day01.Input)}");
-            Console.WriteLine($"Day 01, part 2: {day.Part2(Inputs.Year2015.Day01.Input)}");
+            Console.WriteLine($"{aoc.GetType().Name}, part 1: {aoc.SolvePart1(input)}");
+            Console.WriteLine($"{aoc.GetType().Name}, part 2: {aoc.SolvePart2(input)}");
         }
     }
 }

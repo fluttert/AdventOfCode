@@ -2,11 +2,11 @@
 
 namespace AdventOfCode.Year2015
 {
-    public class Day02
+    public class Day02 : IAoC
     {
         // Challenge can be found on https://adventofcode.com/2015/day/2
 
-        public string Part1(string input)
+        public string SolvePart1(string input)
         {
             long wrappingPaper = 0;
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
@@ -26,7 +26,7 @@ namespace AdventOfCode.Year2015
             return wrappingPaper.ToString();
         }
 
-        public string Part2(string input)
+        public string SolvePart2(string input)
         {
             long ribbon = 0;
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);

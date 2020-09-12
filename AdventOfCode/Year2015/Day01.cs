@@ -2,12 +2,12 @@
 
 namespace AdventOfCode.Year2015
 {
-    public class Day01
+    public class Day01 : IAoC
     {
 
         // Challenge can be found on https://adventofcode.com/2015/day/1
 
-        public string Part1(string input)
+        public string SolvePart1(string input)
         {
             int floor = 0;
             for (int i = 0; i < input.Length; i++)
@@ -19,7 +19,7 @@ namespace AdventOfCode.Year2015
             return floor.ToString();
         }
 
-        public string Part2(string input)
+        public string SolvePart2(string input)
         {
             int floor = 0;
             int position = 0;

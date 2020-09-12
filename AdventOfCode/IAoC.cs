@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace AdventOfCode
+{
+    
+    /// <summary>
+    /// Interface for Advent of Code, where each challenge has 2 parts
+    /// </summary>
+    interface IAoC
+    {
+        /// <summary>
+        /// Solves part 1 of an Advent of Code challenge day
+        /// </summary>
+        /// <param name="input">string input</param>
+        /// <returns>string (usually a number)</returns>
+        string SolvePart1(string input);
+
+        /// <summary>
+        /// Solves part 2 of an Advent of Code challenge day
+        /// </summary>
+        /// <param name="input">string input</param>
+        /// <returns>string (usually a number)</returns>
+        string SolvePart2(string input);
+    }
+}
