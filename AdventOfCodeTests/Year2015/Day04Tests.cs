@@ -17,7 +17,7 @@ namespace AdventOfCodeTests
         [Fact]
         public void Part02()
         {
-           
+           // no tests
         }
     }
 }
