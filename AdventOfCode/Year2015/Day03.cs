@@ -34,7 +34,7 @@ namespace AdventOfCode.Year2015
 
                     default:
                         throw new ArgumentOutOfRangeException("input can only contain <>^v");
-                        break;
+                        //break;
                 }
                 locations.Add(new Tuple<int, int>(x, y));
             }
@@ -75,7 +75,7 @@ namespace AdventOfCode.Year2015
 
                     default:
                         throw new ArgumentOutOfRangeException("input can only contain <>^v");
-                        break;
+                        //break;
                 }
 
                 locations.Add(new Tuple<int, int>(positions[isSanta?0:2], positions[isSanta?1:3]));
