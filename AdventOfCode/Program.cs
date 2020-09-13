@@ -5,14 +5,15 @@ namespace AdventOfCode
 {
     internal class AdventOfCode
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             var aoc = new AdventOfCode();
             var stopwatch = new Stopwatch();
             stopwatch.Start();
 
             // Change this to the day you want to run
-            aoc.Solve(new Year2015.Day05(), Inputs.Year2015.Day05.Input);
+            aoc.Solve(new Year2015.Day06(), Inputs.Year2015.Day06.Input);
+            //aoc.Solve(new Year2015.Day05(), Inputs.Year2015.Day05.Input);
             //aoc.Solve(new Year2015.Day04(), new Year2015.Day04().input); // slow: 18370ms
             //aoc.Solve(new Year2015.Day03(), Inputs.Year2015.Day03.Input);
             //aoc.Solve(new Year2015.Day02(), Inputs.Year2015.Day02.Input);
