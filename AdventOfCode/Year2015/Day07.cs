@@ -148,7 +148,126 @@ namespace AdventOfCode.Year2015
 
         public string SolvePart2(string input)
         {
-            return null;
+            string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var wiresValues = new Dictionary<string, ushort>();
+            var nodes = new Dictionary<string, Node>();
+
+            // add all wires (nodes)
+            foreach (string line in lines)
+            {
+                // have a key for each node
+                string nodeId = (line.Split(new char[] { ' ' })).Last();
+                nodes.Add(nodeId, new Node(nodeId, line));
+            }
+
+            // add node B
+            wiresValues.Add("b", 956);
+
+
+            var stack = new Stack<string>();
+            stack.Push("a");
+            while (stack.Count > 0)
+            {
+                Node wire = nodes[stack.Peek()];
+                if (wire.signalReady)
+                {
+                    if (!wiresValues.ContainsKey(wire.id))
+                    {
+                        wiresValues.Add(wire.id, wire.signal);
+                    }
+                    stack.Pop();
+                    continue;
+                }
+
+                // else process the node
+                string[] parts = wire.circuit.Split(new char[] { '-', '>', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+                // Assign
+                if (parts.Length == 2)
+                {
+                    if (char.IsDigit(parts[0][0]))
+                    {
+                        wire.signal = ushort.Parse(parts[0]);
+                        wire.signalReady = true;
+                        continue;
+                    }
+                    if (wiresValues.ContainsKey(parts[0]))
+                    {
+                        wire.signal = wiresValues[parts[0]];
+                        wire.signalReady = true;
+                        continue;
+                    }
+                    stack.Push(parts[0]);
+                    continue;
+                }
+                // NOT
+                if (parts[0] == "NOT")
+                {
+                    if (wiresValues.ContainsKey(parts[1]))
+                    {
+                        wire.signal = bitwiseNot(wiresValues[parts[1]]);
+                        wire.signalReady = true;
+                    }
+                    else { stack.Push(parts[1]); }
+                    continue;
+                }
+
+                // AND
+                if (parts[1] == "AND")
+                {
+                    if (char.IsDigit(parts[0][0]) && wiresValues.ContainsKey(parts[2]))
+                    {
+                        wire.signal = bitwiseAnd(ushort.Parse(parts[0]), wiresValues[parts[2]]);
+                        wire.signalReady = true;
+                        continue;
+                    }
+
+                    if (wiresValues.ContainsKey(parts[0]) && wiresValues.ContainsKey(parts[2]))
+                    {
+                        wire.signal = bitwiseAnd(wiresValues[parts[0]], wiresValues[parts[2]]);
+                        wire.signalReady = true;
+                    }
+                    if (!char.IsDigit(parts[0][0]) && !wiresValues.ContainsKey(parts[0])) { stack.Push(parts[0]); }
+                    if (!wiresValues.ContainsKey(parts[2])) { stack.Push(parts[2]); }
+                    continue;
+                }
+
+                // OR
+                if (parts[1] == "OR")
+                {
+                    if (wiresValues.ContainsKey(parts[0]) && wiresValues.ContainsKey(parts[2]))
+                    {
+                        wire.signal = bitwiseOr(wiresValues[parts[0]], wiresValues[parts[2]]);
+                        wire.signalReady = true;
+                    }
+                    if (!wiresValues.ContainsKey(parts[0])) { stack.Push(parts[0]); }
+                    if (!wiresValues.ContainsKey(parts[2])) { stack.Push(parts[2]); }
+                    continue;
+                }
+
+                // SHIFT LEFT
+                if (parts[1] == "LSHIFT")
+                {
+                    if (wiresValues.ContainsKey(parts[0]))
+                    {
+                        wire.signal = bitwiseLeftShift(wiresValues[parts[0]], int.Parse(parts[2]));
+                        wire.signalReady = true;
+                    }
+                    else { stack.Push(parts[0]); }
+                    continue;
+                }
+                // SHIFT LEFT
+                if (parts[1] == "RSHIFT")
+                {
+                    if (wiresValues.ContainsKey(parts[0]))
+                    {
+                        wire.signal = bitwiseRightshift(wiresValues[parts[0]], int.Parse(parts[2]));
+                        wire.signalReady = true;
+                    }
+                    else { stack.Push(parts[0]); }
+                }
+            }
+            return wiresValues["a"].ToString();
         }
 
         public ushort bitwiseAnd(ushort val1, ushort val2)
