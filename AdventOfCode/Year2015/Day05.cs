@@ -54,7 +54,7 @@ namespace AdventOfCode.Year2015
                 bool doubleLetterPairFound = false;
                 for (int i = 1; i < line.Length; i++)
                 {
-                    string pair = line.Substring(startIndex: i-1, length: 2);
+                    string pair = line.Substring(startIndex: i - 1, length: 2);
                     if (letterPairs.Contains(pair))
                     {
                         doubleLetterPairFound = true;
@@ -85,6 +85,11 @@ namespace AdventOfCode.Year2015
             }
 
             return niceStrings.ToString(); ;
+        }
+
+        public string GetInput()
+        {
+            return new Inputs.Year2015.Day05().Input;
         }
     }
 }

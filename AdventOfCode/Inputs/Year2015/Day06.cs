@@ -2,7 +2,7 @@
 {
     public class Day06
     {
-        public static string Input = @"toggle 461,550 through 564,900
+        public string Input = @"toggle 461,550 through 564,900
 turn off 370,39 through 425,839
 turn off 464,858 through 833,915
 turn off 812,389 through 865,874

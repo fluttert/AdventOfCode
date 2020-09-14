@@ -36,5 +36,10 @@ namespace AdventOfCode.Year2015
             }
             return position.ToString();
         }
+
+        public string GetInput()
+        {
+            return new Inputs.Year2015.Day01().Input;
+        }
     }
 }

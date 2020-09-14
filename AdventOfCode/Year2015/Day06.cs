@@ -76,5 +76,10 @@ namespace AdventOfCode.Year2015
             }
             return totalBrightness.ToString(); ;
         }
+
+        public string GetInput()
+        {
+            return new Inputs.Year2015.Day06().Input;
+        }
     }
 }

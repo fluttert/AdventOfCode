@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AdventOfCode.Inputs.Year2015
+﻿namespace AdventOfCode.Inputs.Year2015
 {
     public class Day05
     {
-        public static string Input = @"sszojmmrrkwuftyv
+        public string Input = @"sszojmmrrkwuftyv
 isaljhemltsdzlum
 fujcyucsrxgatisb
 qiqqlmcgnhzparyg

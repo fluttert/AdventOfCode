@@ -83,5 +83,10 @@ namespace AdventOfCode.Year2015
 
             return locations.Count.ToString();
         }
+
+        public string GetInput()
+        {
+            return new Inputs.Year2015.Day03().Input;
+        }
     }
 }

@@ -23,5 +23,11 @@ namespace AdventOfCode
         /// <param name="input">string input</param>
         /// <returns>string (usually a number)</returns>
         string SolvePart2(string input);
+
+        /// <summary>
+        /// Gets the challenge input associated with the day
+        /// </summary>
+        /// <returns></returns>
+        string GetInput();
     }
 }

@@ -44,5 +44,10 @@ namespace AdventOfCode.Year2015
 
             return ribbon.ToString();
         }
+
+        public string GetInput()
+        {
+            return new Inputs.Year2015.Day02().Input;
+        }
     }
 }

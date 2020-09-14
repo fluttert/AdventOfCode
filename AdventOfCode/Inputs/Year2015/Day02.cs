@@ -2,7 +2,7 @@
 {
     internal class Day02
     {
-        public static string Input = @"20x3x11
+        public string Input = @"20x3x11
 15x27x5
 6x29x7
 30x15x9

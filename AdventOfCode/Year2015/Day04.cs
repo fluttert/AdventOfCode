@@ -7,8 +7,6 @@ namespace AdventOfCode.Year2015
     {
         // Challenge can be found on https://adventofcode.com/2015/day/4
 
-        public string input = "yzbqklnj";
-
         public string SolvePart1(string input)
         {
             int number = 0;
@@ -52,6 +50,11 @@ namespace AdventOfCode.Year2015
                 sb.Append(hashBytes[i].ToString("X2"));
             }
             return sb.ToString();
+        }
+
+        public string GetInput()
+        {
+            return "yzbqklnj";
         }
     }
 }
