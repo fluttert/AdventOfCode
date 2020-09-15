@@ -6,8 +6,6 @@ namespace AdventOfCode.Year2015
     {
         // Challenge can be found on https://adventofcode.com/2015/day/8
 
-        // 1375 is to high
-
         public string SolvePart1(string input)
         {
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
