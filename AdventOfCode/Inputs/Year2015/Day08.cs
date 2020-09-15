@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AdventOfCode.Inputs.Year2015
+﻿namespace AdventOfCode.Inputs.Year2015
 {
     public class Day08
     {
