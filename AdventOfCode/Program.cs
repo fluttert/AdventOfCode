@@ -8,8 +8,6 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
 
             // Change this to the day you want to run
             aoc.Solve(new Year2015.Day08()); 
@@ -22,15 +20,18 @@ namespace AdventOfCode
             //aoc.Solve(new Year2015.Day01());
 
             // timing
-            Console.WriteLine("");
-            Console.WriteLine($"Execution time was about {stopwatch.ElapsedMilliseconds}ms");
+           
             Console.ReadLine();
         }
 
         public void Solve(IAoC aoc)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
             Console.WriteLine($"{aoc.GetType().Name}, part 1: {aoc.SolvePart1(aoc.GetInput())}");
             Console.WriteLine($"{aoc.GetType().Name}, part 2: {aoc.SolvePart2(aoc.GetInput())}");
+            Console.WriteLine("");
+            Console.WriteLine($"Execution time was about {stopwatch.ElapsedMilliseconds}ms");
         }
     }
 }
