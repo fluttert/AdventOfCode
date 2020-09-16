@@ -10,19 +10,19 @@ namespace AdventOfCodeTests
         [Fact]
         public void Part01()
         {
-            // in Verbatim/literal string the " is escaped by "" :|
             string testInput = @"London to Dublin = 464
 London to Belfast = 518
 Dublin to Belfast = 141";
             Assert.Equal("605", day.SolvePart1(testInput));
-           
         }
 
         [Fact]
         public void Part02()
         {
-         
-            
+            string testInput = @"London to Dublin = 464
+London to Belfast = 518
+Dublin to Belfast = 141";
+            Assert.Equal("982", day.SolvePart2(testInput));
         }
     }
 }
