@@ -12,7 +12,7 @@
             // a = 97, z=122
             while (!PasswordRequirements(letters))
             {
-                letters[letters.Length - 1]++;
+                letters[^1]++;
                 // increment
                 bool carry = false;
                 for (int i = letters.Length - 1; i >= 0; i--)
@@ -62,7 +62,7 @@
         public string SolvePart2(string input)
         {
             var answerPart1 = SolvePart1(input).ToCharArray();
-            answerPart1[answerPart1.Length - 1]++;
+            answerPart1[^1]++;
             return SolvePart1(new string(answerPart1));
         }
 
