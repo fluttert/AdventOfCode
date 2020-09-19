@@ -37,11 +37,11 @@ namespace AdventOfCode.Year2015
         {
             StringBuilder sb = new StringBuilder();
 
-            bool inputFiltered = false;
-            while (!inputFiltered)
+            // this filters out the red-property
+            while (true)
             {
                 int loc = input.IndexOf(":\"red\"");
-                if (loc == -1) { inputFiltered = true; break; }
+                if (loc == -1) { break; }
 
                 // search curly braces
                 int openingBracket = -1;
