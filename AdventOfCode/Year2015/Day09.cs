@@ -62,8 +62,7 @@ namespace AdventOfCode.Year2015
         }
 
         // thank you https://stackoverflow.com/questions/756055/listing-all-permutations-of-a-string-integer
-        internal static IEnumerable<IEnumerable<T>>
-    GetPermutations<T>(IEnumerable<T> list, int length)
+        internal static IEnumerable<IEnumerable<T>> GetPermutations<T>(IEnumerable<T> list, int length)
         {
             if (length == 1) return list.Select(t => new T[] { t });
 
