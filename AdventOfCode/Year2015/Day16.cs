@@ -51,12 +51,11 @@ namespace AdventOfCode.Year2015
             {
                 var parts = line.Split(new char[] { ':', ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
                 int sueNumber = int.Parse(parts[1]);
-                Dictionary<string, int> sueProps = new Dictionary<string, int>();
+                var sueProps = new Dictionary<string, int>();
                 sueProps.Add(parts[2], int.Parse(parts[3]));
                 sueProps.Add(parts[4], int.Parse(parts[5]));
                 sueProps.Add(parts[6], int.Parse(parts[7]));
 
-                bool sueFound = true;
                 int matches = 0;
                 foreach (var pair in sueProps)
                 {
