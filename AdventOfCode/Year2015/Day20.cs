@@ -2,7 +2,7 @@
 {
     internal class Day20 : IAoC
     {
-        // Challenge can be found on: https://adventofcode.com/2015/day/19
+        // Challenge can be found on: https://adventofcode.com/2015/day/20
 
         public string SolvePart1(string input)
         {
