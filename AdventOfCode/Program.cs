@@ -10,7 +10,8 @@ namespace AdventOfCode
             var aoc = new AdventOfCode();
 
             // Change this to the day you want to run
-            aoc.Solve(new Year2015.Day19()); 
+            aoc.Solve(new Year2015.Day20()); 
+            //aoc.Solve(new Year2015.Day19()); 
             //aoc.Solve(new Year2015.Day18()); 
             //aoc.Solve(new Year2015.Day17()); 
             //aoc.Solve(new Year2015.Day16()); 
