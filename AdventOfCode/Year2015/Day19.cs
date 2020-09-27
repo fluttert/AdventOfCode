@@ -11,21 +11,21 @@ namespace AdventOfCode.Year2015
             var inputs = ProcessInputPart1(input);
             var distinctMolecules = new HashSet<string>();
 
-            foreach (var replacement in inputs.replacements)
+            foreach (var (from, to) in inputs.replacements)
             {
-                int length = replacement.from.Length;
+                int length = from.Length;
                 int lastIndexOf = 0; // if not found this will turn to -1
                 while (lastIndexOf >= 0)
                 {
-                    lastIndexOf = inputs.input.IndexOf(replacement.from, lastIndexOf);
+                    lastIndexOf = inputs.input.IndexOf(from, lastIndexOf);
                     if (lastIndexOf == -1) { continue; } // none found
 
                     // construct new molecule
-                    string firstPart = inputs.input.Substring(0, lastIndexOf);
-                    string newPart = replacement.to;
-                    string lastPart = inputs.input.Substring(lastIndexOf + length);
+                    //string firstPart = inputs.input.Substring(0, lastIndexOf);
+                    //string newPart = replacement.to;
+                    //string lastPart = inputs.input.Substring(lastIndexOf + length);
 
-                    string molecule = inputs.input.Substring(0, lastIndexOf) + replacement.to + inputs.input.Substring(lastIndexOf + length);
+                    string molecule = inputs.input.Substring(0, lastIndexOf) + to + inputs.input.Substring(lastIndexOf + length);
                     distinctMolecules.Add(molecule);
 
                     lastIndexOf++; // move to next character/
@@ -93,11 +93,11 @@ namespace AdventOfCode.Year2015
         // This bruteforce did not finish within 10 minutes (and ate 32 GB)
         public string SolvePart2BruteForce(string input)
         {
-            var tmp = ProcessInputPart2(input);
+            var (replacements, startingBlocks, result) = ProcessInputPart2(input);
 
             var uniqueMolecules = new HashSet<string>();
             var queue = new Queue<(string molecule, int steps)>();
-            foreach (string start in tmp.startingBlocks)
+            foreach (string start in startingBlocks)
             {
                 queue.Enqueue((start, 1));
             }
@@ -107,20 +107,20 @@ namespace AdventOfCode.Year2015
                 var mol = queue.Dequeue();
 
                 // a molecule will only get longer, don't bother processing molecules that are same length
-                if (mol.molecule.Length >= tmp.result.Length) { continue; }
+                if (mol.molecule.Length >= result.Length) { continue; }
 
-                foreach (var replacement in tmp.replacements)
+                foreach (var (from, to) in replacements)
                 {
-                    int length = replacement.from.Length;
+                    int length = from.Length;
                     int lastIndexOf = 0; // if not found this will turn to -1
                     while (lastIndexOf >= 0)
                     {
-                        lastIndexOf = mol.molecule.IndexOf(replacement.from, lastIndexOf);
+                        lastIndexOf = mol.molecule.IndexOf(from, lastIndexOf);
                         if (lastIndexOf == -1) { continue; } // none found
 
-                        string molecule = mol.molecule.Substring(0, lastIndexOf) + replacement.to + mol.molecule.Substring(lastIndexOf + length);
+                        string molecule = mol.molecule.Substring(0, lastIndexOf) + to + mol.molecule.Substring(lastIndexOf + length);
 
-                        if (molecule == tmp.result)
+                        if (molecule == result)
                         {
                             stepsForMolecule = mol.steps;
                             break;
