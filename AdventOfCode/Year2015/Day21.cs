@@ -43,7 +43,7 @@ namespace AdventOfCode.Year2015
             while (queue.Count > 0)
             {
                 var outfit = queue.Dequeue();
-                int outfitCost = calculateOutfitPrice(outfit);
+                int outfitCost = CalculateOutfitPrice(outfit);
 
                 // no bother to fight if it aint the cheapest winnable outfit
                 if (outfitCost > cheapestOutfit) { continue; }
@@ -81,7 +81,7 @@ namespace AdventOfCode.Year2015
             return cheapestOutfit.ToString();
         }
 
-        internal int calculateOutfitPrice((string weapon, string armor, string ring1, string ring2) outfit)
+        internal int CalculateOutfitPrice((string weapon, string armor, string ring1, string ring2) outfit)
         {
             int cost = weapons[outfit.weapon].cost;
             if (outfit.armor != null) { cost += armor[outfit.armor].cost; }
@@ -137,7 +137,7 @@ namespace AdventOfCode.Year2015
             while (queue.Count > 0)
             {
                 var outfit = queue.Dequeue();
-                int outfitCost = calculateOutfitPrice(outfit);
+                int outfitCost = CalculateOutfitPrice(outfit);
 
                 if (PlayerWinsFromBoss(outfit) == false)
                 {
