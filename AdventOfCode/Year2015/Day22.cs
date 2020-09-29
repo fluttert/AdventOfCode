@@ -38,25 +38,25 @@ namespace AdventOfCode.Year2015
             {
                 var game = games.Dequeue();
 
-                var result = SimulateGame(game, hardMode, minimumManaSpent);
+                var (gameValid, gameEnds, playerWins, manaSpent) = SimulateGame(game, hardMode, minimumManaSpent);
 
                 // discard invalid & expensive games
-                if (result.gameValid is false)
+                if (gameValid is false)
                 {
                     continue;
                 }
 
-                if (result.gameEnds && result.playerWins)
+                if (gameEnds && playerWins)
                 {
-                    if (result.manaSpent < minimumManaSpent)
+                    if (manaSpent < minimumManaSpent)
                     {
-                        minimumManaSpent = result.manaSpent;
+                        minimumManaSpent = manaSpent;
                         //break;
                     }
                 }
 
                 // when the match is not yet over, add a random spell
-                if (result.gameEnds is false)
+                if (gameEnds is false)
                 {
                     foreach (var spell in spells)
                     {
@@ -69,6 +69,7 @@ namespace AdventOfCode.Year2015
             return minimumManaSpent.ToString();
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0042:Deconstruct variable declaration", Justification = "<Pending>")]
         public (bool gameValid, bool gameEnds, bool playerWins, int manaSpent) SimulateGame(List<string> moves, bool hardMode, int manaLimit)
         {
             var gameResult = (gameValid: true, gameEnds: true, playerWins: false, manaSpent: 0);
