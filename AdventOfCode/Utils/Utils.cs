@@ -46,5 +46,32 @@ namespace AdventOfCode.Utils
             duplicate[^1] = newElement;
             return duplicate;
         }
+
+
+        /// <summary>
+        /// Return difference an Array and a subset of that array
+        /// </summary>
+        /// <remarks>Array & Subset needs to be in the same order</remarks>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="completeArray"></param>
+        /// <param name="subset"></param>
+        /// <returns></returns>
+        public static T[] ArrayDifference<T>(T[] completeArray, T[] subset)
+        {
+            T[] diff = new T[completeArray.Length - subset.Length];
+            int i = 0, j = 0, k = 0;
+            while (i < completeArray.Length && j < subset.Length)
+            {
+                // skip if the same
+                if (completeArray[i].Equals( subset[j])) { i++; j++; }
+                else { diff[k] = completeArray[i]; i++; k++; }
+            }
+            // add any remaining numbers if whole subset was already added
+            while (i < completeArray.Length)
+            {
+                diff[k] = completeArray[i]; k++; i++;
+            }
+            return diff;
+        }
     }
 }

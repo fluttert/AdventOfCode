@@ -47,10 +47,21 @@ namespace AdventOfCodeTests
         }
 
         [Fact]
-        public void ArrayDifferences() { 
-            var numbers = new int[]{ 7,6,5,4,3,2,1};
+        public void ArrayDifferences()
+        {
+            var numbers = new int[] { 7, 6, 5, 4, 3, 2, 1 };
             var subset = new int[] { 6, 3, 1 };
             var diff = new int[] { 7, 5, 4, 2 };
+            Assert.Equal(diff, day.ArrayDifference(numbers, subset));
+
+            numbers = new int[] { 7, 6, 5, 4, 3, 2, 1 };
+            subset = new int[] { 7, 6, 5 };
+            diff = new int[] { 4, 3, 2, 1 };
+            Assert.Equal(diff, day.ArrayDifference(numbers, subset));
+
+            numbers = new int[] { 7, 6, 5, 4, 3, 2, 1 };
+            subset = new int[] { 3, 2, 1 };
+            diff = new int[] { 7, 6, 5, 4 };
             Assert.Equal(diff, day.ArrayDifference(numbers, subset));
         }
 
@@ -75,14 +86,25 @@ namespace AdventOfCodeTests
             lists = day.MakeSets(new int[] { 1, 2, 3, 4, 5, 6 }, 6);
             Assert.Equal(4, lists.Count);
 
-            lists = day.MakeSets(new int[] { 1, 2, 3, 4, 5, 6,7 }, 7);
+            lists = day.MakeSets(new int[] { 1, 2, 3, 4, 5, 6, 7 }, 7);
             Assert.Equal(5, lists.Count);
         }
 
         [Fact]
         public void Part02()
         {
-            // no tests
+            string input = @"1
+2
+3
+4
+5
+7
+8
+9
+10
+11";
+
+            Assert.Equal("44", day.SolvePart2(input));
         }
     }
 }

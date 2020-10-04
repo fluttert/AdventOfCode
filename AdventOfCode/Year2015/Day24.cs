@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AdventOfCode.Utils;
 
 namespace AdventOfCode.Year2015
 {
@@ -18,7 +17,6 @@ namespace AdventOfCode.Year2015
             int sum = numbers.Sum();
             int targetSize = sum / 3;
             var sets = MakeSmallestSets(numbers, targetSize);
-            int smallestGroup = int.MaxValue;
             long smallestQuantumEntanglement = long.MaxValue;
             foreach (var smallSet in sets)
             {
@@ -29,9 +27,11 @@ namespace AdventOfCode.Year2015
                 }
 
                 // Only continue & validate other sets if we have a potential smallest set
-                if (qe < smallestQuantumEntanglement) {
+                if (qe < smallestQuantumEntanglement)
+                {
                     bool validGroup = ValidOther2Sets(numbers, smallSet, targetSize);
-                    if (validGroup) {
+                    if (validGroup)
+                    {
                         smallestQuantumEntanglement = qe;
                     }
                 }
@@ -39,8 +39,56 @@ namespace AdventOfCode.Year2015
             return smallestQuantumEntanglement.ToString();
         }
 
+        public string SolvePart2(string input)
+        {
+            // get the numbers and sort them descending (high -> low)
+            int[] numbers = Array.ConvertAll(input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            Array.Sort(numbers);
+            Array.Reverse(numbers);
 
-        public bool ValidOther2Sets(int[] numbers, int[] smallestSet, int targetSum) {
+            int sum = numbers.Sum();
+            int targetSum = sum / 4;
+            var sets = MakeSmallestSets(numbers, targetSum);
+            long smallestQuantumEntanglement = long.MaxValue;
+            foreach (var smallSet in sets)
+            {
+                long qe = 1;
+                for (int i = 0; i < smallSet.Length; i++)
+                {
+                    qe *= (long)smallSet[i];
+                }
+
+                // Only continue & validate other sets if we have a potential smallest set
+                if (qe < smallestQuantumEntanglement)
+                {
+                    bool validGroup = ValidOther3Sets(numbers, smallSet, targetSum);
+                    if (validGroup)
+                    {
+                        smallestQuantumEntanglement = qe;
+                    }
+                }
+            }
+            return smallestQuantumEntanglement.ToString();
+        }
+
+        public bool ValidOther3Sets(int[] numbers, int[] smallestSet, int targetSum)
+        {
+            var remainingNumbers = ArrayDifference(numbers, smallestSet);
+            var firstSets = MakeSmallestSets(remainingNumbers, targetSum);
+            bool validSets = false;
+            foreach (var set in firstSets)
+            {
+                if (ValidOther2Sets(remainingNumbers, set, targetSum))
+                {
+                    validSets = true;
+                    break;
+                }
+            }
+            return validSets;
+        }
+
+        public bool ValidOther2Sets(int[] numbers, int[] smallestSet, int targetSum)
+        {
             var remainingNumbers = ArrayDifference(numbers, smallestSet);
 
             // with the smallest set determined, can we have 2 other valid sets
@@ -49,21 +97,28 @@ namespace AdventOfCode.Year2015
 
             var anotherSetCreated = MakeSmallestSets(remainingNumbers, targetSum, true);
 
-            return anotherSetCreated.Count>0;
+            return anotherSetCreated.Count > 0;
         }
 
-        public int[] ArrayDifference(int[] numbers, int[] subset) {
+        public int[] ArrayDifference(int[] numbers, int[] subset)
+        {
             int[] diff = new int[numbers.Length - subset.Length];
-            int i = 0, j = 0, k=0;
-            while (i < numbers.Length && j< subset.Length) {
+            int i = 0, j = 0, k = 0;
+            while (i < numbers.Length && j < subset.Length)
+            {
                 // skip if the same
                 if (numbers[i] == subset[j]) { i++; j++; }
-                else { diff[k] = numbers[i]; k++; i++; }
+                else { diff[k] = numbers[i]; i++; k++; }
+            }
+            // add any remaining numbers if whole subset was already added
+            while (i < numbers.Length)
+            {
+                diff[k] = numbers[i]; k++; i++;
             }
             return diff;
         }
 
-        public List<int[]> MakeSmallestSets(int[] numbers, int targetSum, bool returnAtFirstResult=false)
+        public List<int[]> MakeSmallestSets(int[] numbers, int targetSum, bool returnAtFirstResult = false)
         {
             var output = new List<int[]>();
             var queue = new Queue<(int index, int sum, int[] numbers)>();
@@ -85,7 +140,7 @@ namespace AdventOfCode.Year2015
 
             while (queue.Count > 0)
             {
-                if (returnAtFirstResult && output.Count>0) { break; }
+                if (returnAtFirstResult && output.Count > 0) { break; }
 
                 var tuple = queue.Dequeue();
 
@@ -100,15 +155,17 @@ namespace AdventOfCode.Year2015
                     int sumUpdate = sum + numbers[i];
                     var updatedNumbers = Utils.Utils.DuplicateAndAddOneElement(tuple.numbers, numbers[i]);
                     if (sumUpdate > targetSum || updatedNumbers.Length > smallestTargetGroupSize) { continue; }
-                    
+
                     // we have a target in sight
-                    if (sumUpdate == targetSum) {
-                        if (smallestTargetGroupSize > updatedNumbers.Length) {
+                    if (sumUpdate == targetSum)
+                    {
+                        if (smallestTargetGroupSize > updatedNumbers.Length)
+                        {
                             output.Clear();
                             smallestTargetGroupSize = updatedNumbers.Length;
                         }
                         output.Add(updatedNumbers);
-                        continue; 
+                        continue;
                     }
 
                     // we have not reached targetsize & there is room for additional numbers
@@ -165,12 +222,6 @@ namespace AdventOfCode.Year2015
             }
 
             return output;
-        }
-
-        public string SolvePart2(string input)
-        {
-            string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            return "";
         }
 
         public string GetInput()
