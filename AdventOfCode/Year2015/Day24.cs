@@ -20,10 +20,13 @@ namespace AdventOfCode.Year2015
             // check of the groups, in a non-repeating order
             for (int i = 0; i < sets.Count; i++)
             {
+                int ilength = sets[i].Count;
                 for (int j = i + 1; j < sets.Count; j++)
                 {
+                    int jlength = sets[j].Count;
                     for (int k = j + 1; k < sets.Count; k++)
                     {
+                        if (ilength + jlength + sets[k].Count != numbers.Length) { continue; }
                         // check if all numbers only occur once
                         var check = new HashSet<int>(sets[i]);
                         bool valid = true;
