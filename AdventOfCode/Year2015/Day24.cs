@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AdventOfCode.Utils;
 
 namespace AdventOfCode.Year2015
 {
@@ -9,63 +10,113 @@ namespace AdventOfCode.Year2015
     {
         public string SolvePart1(string input)
         {
+            // get the numbers and sort them descending (high -> low)
             int[] numbers = Array.ConvertAll(input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+            Array.Sort(numbers);
+            Array.Reverse(numbers);
+
             int sum = numbers.Sum();
             int targetSize = sum / 3;
-            var sets = MakeSets(numbers, targetSize);
+            var sets = MakeSmallestSets(numbers, targetSize);
             int smallestGroup = int.MaxValue;
-            int smallestQuantumEntanglement = int.MaxValue;
-            var alreadyChecked = new HashSet<int>();
-
-            // check of the groups, in a non-repeating order
-            for (int i = 0; i < sets.Count; i++)
+            long smallestQuantumEntanglement = long.MaxValue;
+            foreach (var smallSet in sets)
             {
-                int ilength = sets[i].Count;
-                for (int j = i + 1; j < sets.Count; j++)
+                long qe = 1;
+                for (int i = 0; i < smallSet.Length; i++)
                 {
-                    int jlength = sets[j].Count;
-                    for (int k = j + 1; k < sets.Count; k++)
-                    {
-                        if (ilength + jlength + sets[k].Count != numbers.Length) { continue; }
-                        // check if all numbers only occur once
-                        var check = new HashSet<int>(sets[i]);
-                        bool valid = true;
-                        foreach (int n in sets[j])
-                        {
-                            if (check.Contains(n)) { valid = false;  break; }
-                            check.Add(n);
-                        }
-                        foreach (int n in sets[k])
-                        {
-                            if (check.Contains(n)) { valid = false; break; }
-                            check.Add(n);
-                        }
+                    qe *= (long)smallSet[i];
+                }
 
-                        // great succes
-                        //validGroups.Add(new int[] { i, j, k });
-                        if (valid is true && sets[i].Count == smallestGroup && alreadyChecked.Contains(i) is false) {
-                            smallestGroup = sets[i].Count;
-                            int qe = 1;
-                            foreach (int n in sets[i]) { qe *= n; }
-                            smallestQuantumEntanglement = Math.Min(smallestQuantumEntanglement, qe);
-                            alreadyChecked.Add(i);
-                        }
-
-                        if (valid is true && sets[i].Count < smallestGroup)
-                        {
-                            smallestGroup = sets[i].Count; alreadyChecked = new HashSet<int>();
-                            int qe = 1;
-                            foreach (int n in sets[i]) { qe *= n; }
-                            smallestQuantumEntanglement = Math.Min(smallestQuantumEntanglement, qe);
-                            alreadyChecked.Add(i);
-                        }
+                // Only continue & validate other sets if we have a potential smallest set
+                if (qe < smallestQuantumEntanglement) {
+                    bool validGroup = ValidOther2Sets(numbers, smallSet, targetSize);
+                    if (validGroup) {
+                        smallestQuantumEntanglement = qe;
                     }
                 }
             }
-
             return smallestQuantumEntanglement.ToString();
         }
 
+
+        public bool ValidOther2Sets(int[] numbers, int[] smallestSet, int targetSum) {
+            var remainingNumbers = ArrayDifference(numbers, smallestSet);
+
+            // with the smallest set determined, can we have 2 other valid sets
+            // if you can make 1 valid extra set, we guarantee validity
+            // as TotalSum - targetSize - TargetSize = TargetSize
+
+            var anotherSetCreated = MakeSmallestSets(remainingNumbers, targetSum, true);
+
+            return anotherSetCreated.Count>0;
+        }
+
+        public int[] ArrayDifference(int[] numbers, int[] subset) {
+            int[] diff = new int[numbers.Length - subset.Length];
+            int i = 0, j = 0, k=0;
+            while (i < numbers.Length && j< subset.Length) {
+                // skip if the same
+                if (numbers[i] == subset[j]) { i++; j++; }
+                else { diff[k] = numbers[i]; k++; i++; }
+            }
+            return diff;
+        }
+
+        public List<int[]> MakeSmallestSets(int[] numbers, int targetSum, bool returnAtFirstResult=false)
+        {
+            var output = new List<int[]>();
+            var queue = new Queue<(int index, int sum, int[] numbers)>();
+            int smallestTargetGroupSize = int.MaxValue;
+
+            // add all numbers
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                // check if the desired number is already the targetsize
+                if (numbers[i] == targetSum)
+                {
+                    output.Add(new int[] { numbers[i] });
+                    smallestTargetGroupSize = 1;
+                    continue;
+                }
+                // add new entries to the queue
+                queue.Enqueue((i + 1, numbers[i], new int[] { numbers[i] }));
+            }
+
+            while (queue.Count > 0)
+            {
+                if (returnAtFirstResult && output.Count>0) { break; }
+
+                var tuple = queue.Dequeue();
+
+                // don't bother with groups that have already exceeded the smallest length
+                if (tuple.numbers.Length > smallestTargetGroupSize) { continue; }
+
+                int sum = tuple.sum;
+
+                for (int i = tuple.index; i < numbers.Length; i++)
+                {
+                    // exceeds targetsize
+                    int sumUpdate = sum + numbers[i];
+                    var updatedNumbers = Utils.Utils.DuplicateAndAddOneElement(tuple.numbers, numbers[i]);
+                    if (sumUpdate > targetSum || updatedNumbers.Length > smallestTargetGroupSize) { continue; }
+                    
+                    // we have a target in sight
+                    if (sumUpdate == targetSum) {
+                        if (smallestTargetGroupSize > updatedNumbers.Length) {
+                            output.Clear();
+                            smallestTargetGroupSize = updatedNumbers.Length;
+                        }
+                        output.Add(updatedNumbers);
+                        continue; 
+                    }
+
+                    // we have not reached targetsize & there is room for additional numbers
+                    queue.Enqueue((i + 1, sumUpdate, Utils.Utils.DuplicateAndAddOneElement(tuple.numbers, numbers[i])));
+                }
+            }
+            return output;
+        }
 
         /// <summary>
         /// Naive implmentation
