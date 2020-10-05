@@ -5,6 +5,8 @@ namespace AdventOfCode.Year2016
 {
     public class Day01 : IAoC
     {
+        // Puzzle can be found on: https://adventofcode.com/2016/day/1
+
         public string SolvePart1(string input)
         {
             int vertical = 0, horizontal = 0;   // coordinate

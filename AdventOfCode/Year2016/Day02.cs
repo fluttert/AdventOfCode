@@ -5,6 +5,8 @@ namespace AdventOfCode.Year2016
 {
     public class Day02 : IAoC
     {
+        // Puzzle can be found on: https://adventofcode.com/2016/day/2
+
         public string SolvePart1(string input)
         {
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
