@@ -8,9 +8,8 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
-            aoc.Solved();
-
-            // Change this to the day you want to run
+            aoc.Solve(new Year2016.Day02());
+            //aoc.Solve(new Year2016.Day01());
 
             Console.ReadLine();
         }
