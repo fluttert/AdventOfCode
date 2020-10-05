@@ -2,7 +2,7 @@ using AdventOfCode.Year2015;
 using System;
 using Xunit;
 
-namespace AdventOfCodeTests
+namespace AdventOfCodeTests.Year2015
 {
     public class Day23Tests
     {

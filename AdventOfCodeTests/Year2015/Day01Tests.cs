@@ -1,13 +1,12 @@
 using AdventOfCode.Year2015;
-using System;
 using Xunit;
 
-namespace AdventOfCodeTests
+namespace AdventOfCodeTests.Year2015
 {
     public class Day01Tests
     {
         private readonly Day01 day01 = new Day01();
-        
+
         [Fact]
         public void Part01()
         {
@@ -23,7 +22,8 @@ namespace AdventOfCodeTests
         }
 
         [Fact]
-        public void Part02() {
+        public void Part02()
+        {
             Assert.Equal("1", day01.SolvePart2(")"));
             Assert.Equal("5", day01.SolvePart2("()())"));
         }

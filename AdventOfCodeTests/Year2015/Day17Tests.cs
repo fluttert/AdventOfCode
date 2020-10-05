@@ -1,9 +1,7 @@
 using AdventOfCode.Year2015;
-using System;
-using System.Collections.Generic;
 using Xunit;
 
-namespace AdventOfCodeTests
+namespace AdventOfCodeTests.Year2015
 {
     public class Day17Tests
     {
@@ -16,14 +14,9 @@ namespace AdventOfCodeTests
 15
 10
 5
-5";         
-            Assert.Equal("4", day.CombineContainers(input,25).Item1);
-           
+5";
+            Assert.Equal("4", day.CombineContainers(input, 25).Item1);
         }
-
-       
-
-
 
         [Fact]
         public void Part02()

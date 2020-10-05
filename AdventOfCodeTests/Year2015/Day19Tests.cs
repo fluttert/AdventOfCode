@@ -1,7 +1,7 @@
 using AdventOfCode.Year2015;
 using Xunit;
 
-namespace AdventOfCodeTests
+namespace AdventOfCodeTests.Year2015
 {
     public class Day19Tests
     {
@@ -17,7 +17,6 @@ O => HH
 HOH";
 
             Assert.Equal("4", day.SolvePart1(input));
-
 
             input = @"H => HO
 H => OH
@@ -40,7 +39,6 @@ O => HH
 HOH";
 
             Assert.Equal("3", day.SolvePart2(input));
-
 
             input = @"e => H
 e => O
