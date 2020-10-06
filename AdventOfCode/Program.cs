@@ -8,10 +8,15 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
-            aoc.Solve(new Year2016.Day04());
-            aoc.Solve(new Year2016.Day03());
-            aoc.Solve(new Year2016.Day02());
-            aoc.Solve(new Year2016.Day01());
+            aoc.Solve(new Year2016.Day09());
+            aoc.Solve(new Year2016.Day08());
+            aoc.Solve(new Year2016.Day07());
+            aoc.Solve(new Year2016.Day06());
+            //aoc.Solve(new Year2016.Day05()); // slow around 14 seconds (MD5 challenge)
+            //aoc.Solve(new Year2016.Day04());
+            //aoc.Solve(new Year2016.Day03());
+            //aoc.Solve(new Year2016.Day02());
+            //aoc.Solve(new Year2016.Day01());
 
             Console.ReadLine();
         }
@@ -52,8 +57,10 @@ namespace AdventOfCode
             stopwatch.Start();
             Console.WriteLine($"{aoc.GetType().Name}, part 1: {aoc.SolvePart1(aoc.GetInput())}");
             Console.WriteLine($"{aoc.GetType().Name}, part 2: {aoc.SolvePart2(aoc.GetInput())}");
-            Console.WriteLine("");
+            Console.WriteLine(string.Empty);
             Console.WriteLine($"Execution time was about {stopwatch.ElapsedMilliseconds}ms");
+            Console.WriteLine(string.Empty);
+            Console.WriteLine(string.Empty);
         }
     }
 }
