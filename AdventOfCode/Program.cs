@@ -8,6 +8,7 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
+            aoc.Solve(new Year2016.Day10());
             aoc.Solve(new Year2016.Day09());
             aoc.Solve(new Year2016.Day08());
             aoc.Solve(new Year2016.Day07());
