@@ -1,81 +1,175 @@
 ﻿using System;
+using System.Linq;
 
 namespace AdventOfCode.Year2016
 {
-    internal class Day21
+    public class Day21 : IAoC
     {
         public string SolvePart1(string input)
         {
             var lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            return Part1(lines).ToString();
+            return ScramblePasswor(lines).ToString();
         }
 
         public string SolvePart2(string input)
         {
-            var lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            return Part2(lines).ToString();
+            var lines1 = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            // reverse lines!
+            var lines = lines1.Reverse().ToArray();
+            return ScramblePasswor(lines, "fbgdceah").ToString();
         }
 
         public string GetInput() => new Inputs.Year2016.Day21().Input;
 
-        public string Part1(string[] input, string toScramble = "abcdefgh")
+        public string ScramblePasswor(string[] input, string toScramble = "abcdefgh")
         {
-            char[] output = toScramble.ToCharArray();
+            char[] password = toScramble.ToCharArray();
             for (int i = 0; i < input.Length; i++)
             {
                 string line = input[i];
+                string[] pieces = line.Split(' ');
                 if (line.IndexOf("swap position") == 0)
                 {
-                    output = SwapPosition(line, output);
+                    int x = int.Parse(pieces[2]);
+                    int y = int.Parse(pieces[5]);
+                    char tmp = password[x];
+                    password[x] = password[y];
+                    password[y] = tmp;
                 }
                 if (line.IndexOf("swap letter") == 0)
                 {
-                    output = SwapLetter(line, output);
+                    password = SwapLetter(pieces, password);
                 }
-                if (line.IndexOf("rotate left") == 0 || line.IndexOf("rotate left") == 0)
+                if (line.IndexOf("rotate left") == 0)
                 {
-                    output = Rotate(line, output);
+                    password = RotateLeft(pieces, password);
                 }
+                if (line.IndexOf("rotate right") == 0)
+                {
+                    password = RotateRight(pieces, password);
+                }
+
                 if (line.IndexOf("rotate based on position of letter") == 0)
                 {
-                    output = RotateBasedOnLetter(line, output);
+                    password = RotateBasedOnLetter(pieces, password);
                 }
                 if (line.IndexOf("reverse positions") == 0)
                 {
-                    output = ReversePosition(line, output);
+                    password = ReversePosition(pieces, password);
+                }
+                if (line.IndexOf("move position") == 0)
+                {
+                    password = MovePosition(pieces, password);
                 }
             }
-            return new string(output);
+            return new string(password);
         }
 
-        private char[] ReversePosition(string line, char[] output)
+        public char[] SwapLetter(string[] pieces, char[] password)
         {
-            throw new NotImplementedException();
+            // swap letter X with letter Y
+            char x = pieces[2][0], y = pieces[5][0];
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (password[i] == x) { password[i] = y; continue; }
+                if (password[i] == y) { password[i] = x; continue; }
+            }
+            return password;
         }
 
-        private char[] RotateBasedOnLetter(string line, char[] output)
+        public char[] RotateLeft(string[] pieces, char[] password)
         {
-            throw new NotImplementedException();
+            char[] rotated = new char[password.Length];
+            int offset = int.Parse(pieces[2]);
+            for (int i = 0; i < password.Length; i++)
+            {
+                rotated[i] = password[(password.Length + i + offset) % password.Length];
+            }
+            return rotated;
         }
 
-        private char[] Rotate(string line, char[] output)
+        public char[] RotateRight(string[] pieces, char[] password)
         {
-            throw new NotImplementedException();
+            int arrLength = password.Length;
+            char[] rotated = new char[arrLength];
+            int offset = int.Parse(pieces[2]);
+            for (int i = 0; i < arrLength; i++)
+            {
+                rotated[i] = password[(arrLength + i - offset) % arrLength];
+            }
+            return rotated;
         }
 
-        private char[] SwapLetter(string line, char[] output)
+        public char[] RotateBasedOnLetter(string[] pieces, char[] password)
         {
-            throw new NotImplementedException();
+            char x = pieces[6][0];
+            int position = 0;
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (password[i] == x) { position = i; break; }
+            }
+            int offset = position + 1;
+            if (position >= 4) { offset++; }
+
+            // now rotate right
+            int arrLength = password.Length;
+            char[] rotated = new char[arrLength];
+            for (int i = 0; i < arrLength; i++)
+            {
+                rotated[i] = password[((2 * arrLength) + i - offset) % arrLength];
+            }
+            return rotated;
         }
 
-        private char[] SwapPosition(string line, char[] output)
+        public char[] ReversePosition(string[] pieces, char[] password)
         {
-            throw new NotImplementedException();
+            int from = int.Parse(pieces[2]), upTo = int.Parse(pieces[4]);
+            char[] output = new string(password).ToCharArray(); // easy copy
+
+            int pointer = from;
+            int reversePointer = upTo;
+            while (pointer <= upTo)
+            {
+                output[pointer] = password[reversePointer];
+                pointer++;
+                reversePointer--;
+            }
+
+            return output;
         }
 
-        public string Part2(string[] input)
+        public char[] MovePosition(string[] pieces, char[] password)
         {
-            return string.Empty;
+            int x = int.Parse(pieces[2]), y = int.Parse(pieces[5]), index = 0;
+
+            // remove
+            char[] tmp = new char[password.Length - 1];
+            for (int i = 0; i < password.Length; i++)
+            {
+                if (i == x) { continue; }
+                tmp[index] = password[i];
+                index++;
+            }
+
+            // add back in on position Y
+            char[] output = new char[password.Length];
+            index = 0;
+            for (int i = 0; i < tmp.Length; i++)
+            {
+                if (index == y)
+                {
+                    output[index] = password[x];
+                    index++;i--;
+                    continue;
+                }
+                output[index] = tmp[i];
+                index++;
+            }
+            if (y == password.Length - 1) { output[password.Length - 1] = password[x]; }
+
+            return output;
         }
+
+        
     }
 }
