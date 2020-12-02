@@ -22,6 +22,7 @@ namespace AdventOfCode.Year2020
         }
 
         public int ReportRepair(int[] input, int expectedSum)
+
         {
             Array.Sort(input);
             bool found = false;
