@@ -51,7 +51,7 @@ namespace AdventOfCode.Utils
         /// <summary>
         /// Return difference an Array and a subset of that array
         /// </summary>
-        /// <remarks>Array & Subset needs to be in the same order</remarks>
+        /// <remarks>Array and Subset needs to be in the same order</remarks>
         /// <typeparam name="T"></typeparam>
         /// <param name="completeArray"></param>
         /// <param name="subset"></param>
