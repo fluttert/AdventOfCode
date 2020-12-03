@@ -32,18 +32,17 @@ namespace AdventOfCode.Year2020
 
         public int TobogganSlopes(string[] map, int right = 3, int down = 1)
         {
-            // keep tabs on your position (X,Y), and the amount of Trees
+            // keep tabs on your position (row, X), and the amount of Trees
             // Length of map/forest is necessary for the repetition, and the bottom/last line is needed for when to stop
-            int x = 0, y = 0, trees = 0, mapLength = map[0].Length, bottom = map.Length;
+            int row = 0, x = 0, trees = 0, mapLength = map[0].Length, bottom = map.Length;
 
-            while (x < bottom)
+            while (row < bottom)
             {
                 // due to the modulo (%) the pointer will wrap around the line
-                if (map[x][y % mapLength] == '#') { trees++; }
-                y += right;
-                x += down;
+                if (map[row][x % mapLength] == '#') { trees++; }
+                x += right;
+                row += down;
             }
-
             return trees;
         }
 
