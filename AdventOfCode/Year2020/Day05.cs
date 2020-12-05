@@ -37,8 +37,8 @@ namespace AdventOfCode.Year2020
             {
                 int row = BinarySeats(lines[i][0..7]);      // takes the first 7 characters
                 int column = BinarySeats(lines[i][^3..]);   // takes the last 3 characters
-                int seatId = (row * 8) + column;        // calculate seatID
-                seats[i] = seatId;
+                int seatId = (row * 8) + column;            // calculate seatID
+                seats[i] = seatId;                          // save the seatID
             }
 
             // sort and see which seat is missing
