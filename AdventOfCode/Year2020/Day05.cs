@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace AdventOfCode.Year2020
 {
@@ -7,7 +6,7 @@ namespace AdventOfCode.Year2020
     {
         // Puzzle can be found on: https://adventofcode.com/2020/day/5
 
-        /// Generic idea for Day 5 
+        /// Generic idea for Day 5
         /// If you have spotted that the numbers being asked are encoded in binary
         /// then this day will be much easier
         /// BFFFBBF = 1000110 = 70
@@ -43,11 +42,12 @@ namespace AdventOfCode.Year2020
 
             // sort and see which seat is missing
             Array.Sort(seats);
-            for (int i = 1; i < seats.Length; i++) {
-                if ((seats[i ] - seats[i-1]) == 2) {
+            for (int i = 1; i < seats.Length; i++)
+            {
+                if ((seats[i] - seats[i - 1]) == 2)
+                {
                     missingSeatId = seats[i] - 1;
                 }
-            
             }
             return missingSeatId.ToString();
         }
@@ -60,21 +60,19 @@ namespace AdventOfCode.Year2020
             int seatNumber = 0;
             int increment = (int)Math.Pow(2, (code.Length - 1));
 
-            foreach (char half in code)
+            foreach (char isUpperHalf in code)
             {
-                // only increment if you have the upperhalf
-                if (half == 'B' || half == 'R')
+                // actually test if this is the upper half (binary 1)
+                if (isUpperHalf == 'B' || isUpperHalf == 'R')
                 {
                     seatNumber += increment;
                 }
-
-                // and then halve the incremental value
-                increment /= 2;
+                increment /= 2; // next  will be half of the current ( 64/32/16/8/4/2/1 )
             }
             return seatNumber;
         }
 
-        // Did not end up using this code -> BinarySeats = better then this 
+        // Did not end up using this code -> BinarySeats = better then this
         // Idea: Convert the seat-code to a binary string (like 010111)
         // Then convert binary string to int using built-in converter
         public int ConvertSeatingToNumber(string code)
