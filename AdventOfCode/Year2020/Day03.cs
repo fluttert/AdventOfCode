@@ -6,6 +6,10 @@ namespace AdventOfCode.Year2020
     {
         // Puzzle can be found on: https://adventofcode.com/2020/day/3
 
+        /// Generic idea for Day 3
+        /// This assignment is to learn about Modulo A%B=C
+        /// to wrap the map, without copying
+
         public string SolvePart1(string input)
         {
             // Convert the grid to lines

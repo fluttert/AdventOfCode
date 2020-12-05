@@ -7,6 +7,9 @@ namespace AdventOfCode.Year2020
     {
         // Puzzle can be found on: https://adventofcode.com/2020/day/4
 
+        /// Generic idea for Day 4
+        /// It's all about correct parsing and reading carefully
+
         public string SolvePart1(string input)
         {
             // read per line, and do NOT remove empty entries (e.g. empty lines)
