@@ -16,6 +16,9 @@ namespace AdventOfCode.Year2020
             string[] lines = input.Split(Environment.NewLine);
             int sumOfQuestions = 0;
 
+            // a hashset only contains unique elements
+            // add an element that already exists, does not alter the set
+            // a hashset also had O(1) for looking up elements
             var letters = new HashSet<char>();
             for (int i = 0; i < lines.Length; i++)
             {
