@@ -9,7 +9,7 @@ namespace AdventOfCode
         {
             var aoc = new AdventOfCode();
             //aoc.Solve(new Year2020.Day06());
-            aoc.Solved2017();
+            aoc.Solved2019();
             Console.ReadLine();
         }
 
@@ -24,6 +24,18 @@ namespace AdventOfCode
             aoc.Solve(new Year2020.Day01());
         }
 
+        private void Solved2019()
+        {
+            var aoc = new AdventOfCode();
+            //aoc.Solve(new Year2019.Day07()); // 2 slow on part 2
+            aoc.Solve(new Year2019.Day06());
+            aoc.Solve(new Year2019.Day05());
+            aoc.Solve(new Year2019.Day04());
+            aoc.Solve(new Year2019.Day03());
+            aoc.Solve(new Year2019.Day02());
+            aoc.Solve(new Year2019.Day01());
+        }
+
         private void Solved2017() {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2017.Day20());
@@ -31,7 +43,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2017.Day18());
             aoc.Solve(new Year2017.Day17());
             aoc.Solve(new Year2017.Day16());
-            aoc.Solve(new Year2017.Day15());
+            aoc.Solve(new Year2017.Day15()); // slow ~20 sec
             aoc.Solve(new Year2017.Day14());
             aoc.Solve(new Year2017.Day13());
             aoc.Solve(new Year2017.Day12());
@@ -42,7 +54,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2017.Day07());
             aoc.Solve(new Year2017.Day06());
             aoc.Solve(new Year2017.Day05());
-            aoc.Solve(new Year2017.Day04()); // slow: 18370ms
+            aoc.Solve(new Year2017.Day04()); 
             aoc.Solve(new Year2017.Day03());
             aoc.Solve(new Year2017.Day02());
             aoc.Solve(new Year2017.Day01());
@@ -108,6 +120,7 @@ namespace AdventOfCode
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
+            Console.WriteLine($"{aoc.GetType().Namespace}");
             Console.WriteLine($"{aoc.GetType().Name}, part 1: {aoc.SolvePart1(aoc.GetInput())}");
             Console.WriteLine($"{aoc.GetType().Name}, part 2: {aoc.SolvePart2(aoc.GetInput())}");
             Console.WriteLine(string.Empty);
