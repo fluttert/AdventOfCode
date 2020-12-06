@@ -8,8 +8,8 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
-            aoc.Solve(new Year2020.Day06());
-
+            //aoc.Solve(new Year2020.Day06());
+            aoc.Solved2017();
             Console.ReadLine();
         }
 
@@ -22,6 +22,30 @@ namespace AdventOfCode
             aoc.Solve(new Year2020.Day03());
             aoc.Solve(new Year2020.Day02());
             aoc.Solve(new Year2020.Day01());
+        }
+
+        private void Solved2017() {
+            var aoc = new AdventOfCode();
+            aoc.Solve(new Year2017.Day20());
+            aoc.Solve(new Year2017.Day19());
+            aoc.Solve(new Year2017.Day18());
+            aoc.Solve(new Year2017.Day17());
+            aoc.Solve(new Year2017.Day16());
+            aoc.Solve(new Year2017.Day15());
+            aoc.Solve(new Year2017.Day14());
+            aoc.Solve(new Year2017.Day13());
+            aoc.Solve(new Year2017.Day12());
+            aoc.Solve(new Year2017.Day11());
+            aoc.Solve(new Year2017.Day10());
+            aoc.Solve(new Year2017.Day09());
+            aoc.Solve(new Year2017.Day08());
+            aoc.Solve(new Year2017.Day07());
+            aoc.Solve(new Year2017.Day06());
+            aoc.Solve(new Year2017.Day05());
+            aoc.Solve(new Year2017.Day04()); // slow: 18370ms
+            aoc.Solve(new Year2017.Day03());
+            aoc.Solve(new Year2017.Day02());
+            aoc.Solve(new Year2017.Day01());
         }
 
         private void Solved2016()
