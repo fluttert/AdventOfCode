@@ -9,38 +9,48 @@ namespace AdventOfCode
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2020.Day06());
-            //aoc.Solve(new Year2020.Day05());
-            //aoc.Solve(new Year2020.Day04());
-            //aoc.Solve(new Year2020.Day03());
-            //aoc.Solve(new Year2020.Day02());
-            //aoc.Solve(new Year2020.Day01());
-            //aoc.Solve(new Year2016.Day21());
-            //aoc.Solve(new Year2016.Day20());
-            //aoc.Solve(new Year2016.Day19());
-            //aoc.Solve(new Year2016.Day18());
-            //aoc.Solve(new Year2016.Day17());
-            //aoc.Solve(new Year2016.Day16());
-            //aoc.Solve(new Year2016.Day15());
-            //aoc.Solve(new Year2016.Day14()); // slow, MD5 cracking in 37 seconds
-            //aoc.Solve(new Year2016.Day13());
-            //aoc.Solve(new Year2016.Day12()); // slow (4 sec)
-            //aoc.Solve(new Year2016.Day11()); // TODO TODO TODO
-
-            //aoc.Solve(new Year2016.Day10());
-            //aoc.Solve(new Year2016.Day09());
-            //aoc.Solve(new Year2016.Day08());
-            //aoc.Solve(new Year2016.Day07());
-            //aoc.Solve(new Year2016.Day06());
-            //aoc.Solve(new Year2016.Day05()); // slow around 14 seconds (MD5 challenge)
-            //aoc.Solve(new Year2016.Day04());
-            //aoc.Solve(new Year2016.Day03());
-            //aoc.Solve(new Year2016.Day02());
-            //aoc.Solve(new Year2016.Day01());
 
             Console.ReadLine();
         }
 
-        private void Solved()
+        private void Solved2020()
+        {
+            var aoc = new AdventOfCode();
+            aoc.Solve(new Year2020.Day06());
+            aoc.Solve(new Year2020.Day05());
+            aoc.Solve(new Year2020.Day04());
+            aoc.Solve(new Year2020.Day03());
+            aoc.Solve(new Year2020.Day02());
+            aoc.Solve(new Year2020.Day01());
+        }
+
+        private void Solved2016()
+        {
+            var aoc = new AdventOfCode();
+            aoc.Solve(new Year2016.Day21());
+            aoc.Solve(new Year2016.Day20());
+            aoc.Solve(new Year2016.Day19());
+            aoc.Solve(new Year2016.Day18());
+            aoc.Solve(new Year2016.Day17());
+            aoc.Solve(new Year2016.Day16());
+            aoc.Solve(new Year2016.Day15());
+            aoc.Solve(new Year2016.Day14()); // slow, MD5 cracking in 37 seconds
+            aoc.Solve(new Year2016.Day13());
+            aoc.Solve(new Year2016.Day12()); // slow (4 sec)
+                                             // aoc.Solve(new Year2016.Day11()); // TODO TODO TODO
+            aoc.Solve(new Year2016.Day10());
+            aoc.Solve(new Year2016.Day09());
+            aoc.Solve(new Year2016.Day08());
+            aoc.Solve(new Year2016.Day07());
+            aoc.Solve(new Year2016.Day06());
+            aoc.Solve(new Year2016.Day05()); // slow around 14 seconds (MD5 challenge)
+            aoc.Solve(new Year2016.Day04());
+            aoc.Solve(new Year2016.Day03());
+            aoc.Solve(new Year2016.Day02());
+            aoc.Solve(new Year2016.Day01());
+        }
+
+        private void Solved2015()
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2015.Day25());
@@ -64,7 +74,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2015.Day07());
             aoc.Solve(new Year2015.Day06());
             aoc.Solve(new Year2015.Day05());
-            //aoc.Solve(new Year2015.Day04()); // slow: 18370ms
+            aoc.Solve(new Year2015.Day04()); // slow: 18370ms
             aoc.Solve(new Year2015.Day03());
             aoc.Solve(new Year2015.Day02());
             aoc.Solve(new Year2015.Day01());

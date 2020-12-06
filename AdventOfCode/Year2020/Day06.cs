@@ -9,16 +9,16 @@ namespace AdventOfCode.Year2020
 
         /// Generic idea for Day 6
         /// When we are comparing and checking lists; use the datastructure HashSet
+        /// - a hashset only contains unique elements
+        /// - add an element that already exists, does not alter it -> set.Add(element)
+        /// - hashsets have O(1) for looking up elements -> set.Contains(element)
 
         public string SolvePart1(string input)
         {
             // read per line
             string[] lines = input.Split(Environment.NewLine);
-            int sumOfQuestions = 0;
 
-            // a hashset only contains unique elements
-            // add an element that already exists, does not alter the set
-            // a hashset also had O(1) for looking up elements
+            int sumOfQuestions = 0;
             var letters = new HashSet<char>();
             for (int i = 0; i < lines.Length; i++)
             {
@@ -41,10 +41,9 @@ namespace AdventOfCode.Year2020
         {
             // read per line
             string[] lines = input.Split(Environment.NewLine);
+            
             int sumOfQuestions = 0;
             var letters = new HashSet<char>();
-
-
             for (int i = 0; i < lines.Length; i++)
             {
                 // add count to sum + reset
@@ -55,7 +54,6 @@ namespace AdventOfCode.Year2020
                     continue;
                 }
 
-                
                 bool firstLine = i == 0 || lines[i - 1] == "";
                 var lettersUpdated = new HashSet<char>();
                 foreach (char c in lines[i])
