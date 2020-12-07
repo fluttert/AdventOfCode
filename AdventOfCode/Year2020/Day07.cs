@@ -11,6 +11,8 @@ namespace AdventOfCode.Year2020
         /// This is a graph/tree traversal problem
         /// Step 1: Create the graph
         /// Step 2: Search a specific node, and follow the links to other nodes
+        /// 
+        /// Further reading for Graphs, check out the intro from Stanford: https://web.stanford.edu/class/cs97si/06-basic-graph-algorithms.pdf
 
         public string SolvePart1(string input)
         {
