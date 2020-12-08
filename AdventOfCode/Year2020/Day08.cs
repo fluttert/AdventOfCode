@@ -8,7 +8,9 @@ namespace AdventOfCode.Year2020
         // Puzzle can be found on: https://adventofcode.com/2020/day/8
 
         /// Generic idea for Day 8
-        ///
+        /// Create a program that can run instructions in any order
+        /// Tip 1: Parse the input & instructions correctly
+        /// Tip 2: Either with a while or a recursion go through the input
 
         public string SolvePart1(string input)
         {
