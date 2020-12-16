@@ -30,6 +30,7 @@ namespace AdventOfCode.Year2020
             // count the chairs
             int occupiedChairs = 0;
             foreach (string line in map) { occupiedChairs += line.Count(x => x == '#'); }
+            Console.WriteLine($"Took {rounds} rounds to stabilize part 1");
             return occupiedChairs.ToString();
         }
 
@@ -51,6 +52,7 @@ namespace AdventOfCode.Year2020
             // count the chairs
             int occupiedChairs = 0;
             foreach (string line in map) { occupiedChairs += line.Count(x => x == '#'); }
+            Console.WriteLine($"Took {rounds} rounds to stabilize part 2");
             return occupiedChairs.ToString();
         }
 
@@ -119,6 +121,11 @@ namespace AdventOfCode.Year2020
                     if (map[newLine][newColumn] == '#')
                     {
                         occupiedNeighbours++;
+                        stop = true;
+                    }
+                    // when looking for the first CHAIR, ignore if empty
+                    if (directSeatOnly is false && map[newLine][newColumn] == 'L')
+                    {
                         stop = true;
                     }
 
