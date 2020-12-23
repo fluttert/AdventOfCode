@@ -9,6 +9,10 @@ namespace AdventOfCode.Year2020
         // Puzzle can be found on: https://adventofcode.com/2020/day/18
 
         /// Generic idea for Day 18
+        /// String manipulation for the parentheses
+        /// after that pure interpretation
+        /// I think this could be much more elegant
+        /// perhaps using a stack or such?
         public string SolvePart1(string input)
         {
             // read per line and convert to integer array
