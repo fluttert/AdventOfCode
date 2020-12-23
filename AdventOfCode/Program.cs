@@ -9,15 +9,16 @@ namespace AdventOfCode
         {
             var aoc = new AdventOfCode();
             //aoc.Solve(new Year2020.Day22());
+            aoc.Solve(new Year2020.Day16());
             //aoc.Solve(new Year2020.Day14());
             //aoc.Solve(new Year2020.Day12());
             //aoc.Solve(new Year2020.Day15());
             //aoc.Solve(new Year2020.Day11());
             //aoc.Solve(new Year2020.Day13());
-            aoc.Solve(new Year2020.Day10());
+            //aoc.Solve(new Year2020.Day10());
             //aoc.Solve(new Year2020.Day09());
             //aoc.Solve(new Year2020.Day08());
-           
+
             Console.ReadLine();
         }
 
