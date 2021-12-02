@@ -8,24 +8,7 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
-            //aoc.Solve(new Year2020.Day22());
-            aoc.Solve(new Year2020.Day19());    // 200 = too high
-            //aoc.Solve(new Year2020.Day23());
-            //aoc.Solve(new Year2020.Day24());
-            //aoc.Solve(new Year2020.Day25());
-            //aoc.Solve(new Year2020.Day20());
-            //aoc.Solve(new Year2020.Day18());
-            //aoc.Solve(new Year2020.Day17());
-            //aoc.Solve(new Year2020.Day16());
-            //aoc.Solve(new Year2020.Day14());
-            //aoc.Solve(new Year2020.Day12());
-            //aoc.Solve(new Year2020.Day15());
-            //aoc.Solve(new Year2020.Day11());
-            //aoc.Solve(new Year2020.Day13());
-            //aoc.Solve(new Year2020.Day10());
-            //aoc.Solve(new Year2020.Day09());
-            //aoc.Solve(new Year2020.Day08());
-
+            aoc.Solve(new Year2021.Day01());
             Console.ReadLine();
         }
 
