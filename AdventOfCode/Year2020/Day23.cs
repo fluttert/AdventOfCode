@@ -7,8 +7,8 @@ namespace AdventOfCode.Year2020
         // Puzzle can be found on: https://adventofcode.com/2020/day/23
 
         /// Generic idea for Day 23
-        /// part 1: Do a simple int-array and shuffle arround
-        /// part 2: OMG, need to implement some kind of linked list
+        /// part 1: Do a simple int-array and shuffle the cups around
+        /// part 2: OMG, need to implement some kind of linked list -> only list the cup-values and their neighbour value (simpler then part 1)
         public string SolvePart1(string input)
         {
             var state = ParseStatePart01(input);
@@ -44,18 +44,19 @@ namespace AdventOfCode.Year2020
             int[] result = PlayGame(input, 1_000_000, 10_000_000);
             long next = (long)result[1];
             long nextnext = (long)result[next];
-            return (next*nextnext).ToString();
+            return (next * nextnext).ToString();
         }
 
-        public int[] PlayGame(string input, int maxNumber, int rounds) {
-            
+        public int[] PlayGame(string input, int maxNumber, int rounds)
+        {
             // state CUPVALUE -> CupValue to the right
             int[] state = ParseStatePart02(input, maxNumber);
 
             // now do a round :)
             int currentCup = input[0] - '0';
             int round = 0;
-            while (round < rounds) {
+            while (round < rounds)
+            {
                 // determine all nodes that are now fringed
                 int neighbour1 = state[currentCup];
                 int neighbour2 = state[neighbour1];
@@ -64,7 +65,8 @@ namespace AdventOfCode.Year2020
 
                 // determine new insert
                 int destinationCup = currentCup - 1;
-                while (destinationCup == 0 || destinationCup==neighbour1 || destinationCup == neighbour2 || destinationCup == neighbour3) {
+                while (destinationCup == 0 || destinationCup == neighbour1 || destinationCup == neighbour2 || destinationCup == neighbour3)
+                {
                     if (destinationCup == 0) { destinationCup = maxNumber; continue; }
                     destinationCup--;
                 }
@@ -95,14 +97,11 @@ namespace AdventOfCode.Year2020
 
         public int[] ParseStatePart02(string input, int maxNumber)
         {
-            // zero is NEVER an option
+            // the cups are 1-based
             var state = new int[maxNumber + 1];
 
             // init perfect circle
-            for (int i = 1; i <= maxNumber; i++)
-            {
-                state[i - 1] = i;
-            }
+            for (int i = 1; i <= maxNumber; i++) { state[i - 1] = i; }
 
             // overwrite beginning
             for (int i = 1; i < input.Length; i++)
@@ -125,7 +124,7 @@ namespace AdventOfCode.Year2020
                 // fix ending
                 state[maxNumber] = (input[0] - '0');
             }
-            state[0] = 0;
+            state[0] = 0;       // Zero is never an option
             return state;
         }
 
