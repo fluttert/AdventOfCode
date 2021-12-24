@@ -26,7 +26,8 @@ namespace AdventOfCode.Year2021
             int[] lines = Array.ConvertAll(input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries), int.Parse);
             int increased = 0;
 
-            // Insight A + B + c < B + C + D == A < D
+            // Insight A + B + c < B + C + D == A <
+            // D
             for (int i = 3; i < lines.Length; i++)
             {
                 if (lines[i - 3] < lines[i])
