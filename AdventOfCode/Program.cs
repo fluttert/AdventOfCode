@@ -8,7 +8,7 @@ namespace AdventOfCode
         private static void Main()
         {
             var aoc = new AdventOfCode();
-            aoc.Solve(new Year2021.Day05());
+            aoc.Solve(new Year2021.Day08());
 
             Console.ReadLine();
         }
@@ -16,6 +16,9 @@ namespace AdventOfCode
         private void Solved2021()
         {
             var aoc = new AdventOfCode();
+            aoc.Solve(new Year2021.Day07());
+            aoc.Solve(new Year2021.Day06());
+            aoc.Solve(new Year2021.Day05());
             aoc.Solve(new Year2021.Day04());
             aoc.Solve(new Year2021.Day03());
             aoc.Solve(new Year2021.Day02());
