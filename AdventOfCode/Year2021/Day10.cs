@@ -9,7 +9,8 @@ namespace AdventOfCode.Year2021
 
         /**
          * Key Insights
-         * 1: Pattern matching, use a STACK!
+         * 1: Pattern matching, use a STACK! push & pop
+         * 2: Use LONG (int64) for part 2
          *
          */
 
@@ -25,19 +26,20 @@ namespace AdventOfCode.Year2021
                 for (int i = 0; i < line.Length; i++)
                 {
                     char c = line[i];
-                    // case 1: opening chunk == always allowed
+                    // case 1: opening chunk == always allowed -> push to stack
                     if (c == '(' || c == '[' || c == '{' || c == '<') {
                         stack.Push(c);
                         continue;
                     }
-                    // case 2: ending chunk correct
+                    
+                    // case 2: ending chunk correct -> pop the opening tag from the stack
                     char p = stack.Peek(); // see what the last char was
                     if (c == ')' && p == '(') { stack.Pop(); continue; }
                     if (c == ']' && p == '[') { stack.Pop(); continue; }
                     if (c == '}' && p == '{') { stack.Pop(); continue; }
                     if (c == '>' && p == '<') { stack.Pop(); continue; }
 
-                    // case 3 corruption!
+                    // case 3 corruption! Mismatch!
                     if (c == ')' && p != '(') { sumOfErrorCodes += 3;  break; }
                     if (c == ']' && p != '[') { sumOfErrorCodes += 57; break; }
                     if (c == '}' && p != '{') { sumOfErrorCodes +=1197; break; }
@@ -81,7 +83,7 @@ namespace AdventOfCode.Year2021
                     if (c == '>' && p != '<') { corrupted = true; break; }
                 }
 
-                // part 2 = finish the lines
+                // part 2 = unfished lines, should be completed
                 if (corrupted is false && stack.Count > 0) {
                     long sum = 0;
                     while (stack.Count > 0) {
@@ -98,6 +100,8 @@ namespace AdventOfCode.Year2021
             }
 
             completionChallenge.Sort();
+            // integer will round down (eg 1.5 => 1), and this is what we need for a 0-based array
+            // example array of 5 (elements 0 - 4); The middle = 5/2 (2,5, rounded down to 2) = 2
             int middleElement = completionChallenge.Count / 2; 
 
             return "" + completionChallenge[middleElement];
