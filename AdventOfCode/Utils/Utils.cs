@@ -22,6 +22,39 @@ namespace AdventOfCode.Utils
         }
 
         /// <summary>
+        /// Duplicate a hashset, with no reference to the original (aka DeepCopy)
+        /// </summary>
+        /// <typeparam name="T">Type of HashSet</typeparam>
+        /// <param name="original">original HashSet</param>
+        /// <returns>duplicate of the original HashSet (deepcopy)</returns>
+        public static HashSet<T> Duplicate<T>(HashSet<T> original)
+        {
+            var output = new HashSet<T>();
+            foreach (T item in original) { 
+                output.Add(item);
+            }
+            return output;
+        }
+
+
+        /// <summary>
+        /// Duplicate a Dictionary, with no reference to the original (aka DeepCopy)
+        /// </summary>
+        /// <typeparam name="TKey">Type of Dictionary Keys</typeparam>
+        /// <typeparam name="TValue">Type of Dictionary Values</typeparam>
+        /// <param name="original">original dictionary</param>
+        /// <returns>duplicate of the original Dictionary (deepcopy)</returns>
+        public static Dictionary<TKey,TValue> Duplicate<TKey,TValue>(Dictionary<TKey,TValue> original)
+        {
+            var output = new Dictionary<TKey, TValue>();
+            foreach (var item in original)
+            {
+                output.Add(item.Key,item.Value);
+            }
+            return output;
+        }
+
+        /// <summary>
         /// Duplicate an array, using copy mechanism
         /// </summary>
         /// <typeparam name="T">Type of the array</typeparam>
