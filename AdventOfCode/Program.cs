@@ -9,10 +9,16 @@ namespace AdventOfCode
         {
             var aoc = new AdventOfCode();
 
-            aoc.Solve(new Year2021.Day12());
-            //aoc.Solved2021();
+            //aoc.Solve(new Year2021.Day12());
+            aoc.Solved2022();
 
             Console.ReadLine();
+        }
+
+        private void Solved2022()
+        {
+            var aoc = new AdventOfCode();
+            aoc.Solve(new Year2022.Day01());
         }
 
         private void Solved2021()
