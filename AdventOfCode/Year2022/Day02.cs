@@ -4,7 +4,7 @@ namespace AdventOfCode.Year2022
 {
     public class Day02 : IAoC
     {
-        // Puzzle can be found on: https://adventofcode.com/2022/day/1
+        // Puzzle can be found on: https://adventofcode.com/2022/day/2
 
         public string SolvePart1(string input)
         {
