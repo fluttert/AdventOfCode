@@ -38,7 +38,7 @@ namespace AdventOfCode.Year2022
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             for (int i = 0; i < lines.Length; i += 3)
             {
-                HashSet<char> rucksack1 = new()
+                HashSet<char> rucksack1 = new();
                 foreach (char rs1 in lines[i]) { rucksack1.Add(rs1); }
                 HashSet<char> rucksack2 = new();
                 foreach (char rs2 in lines[i + 1])
