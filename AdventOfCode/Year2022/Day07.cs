@@ -49,15 +49,15 @@ namespace AdventOfCode.Year2022
             HashSet<string> done = new();
             // add all directories without children
             foreach (var dir in tree.Values) { if (dir.SubDirectories.Count == 0) { queue.Enqueue(dir); } }
-            // dequeue and add parents
             while (queue.Count > 0)
             {
                 var d = queue.Dequeue();
-                if (done.Contains(d.Name) || d.Name == root.Name) { continue; }
+                if (done.Contains(d.Name) || d.Processed) { continue; }
+
                 bool allComplete = true;
                 foreach (var dir in d.SubDirectories.Values)
                 {
-                    if (!done.Contains(dir.UniqueName))
+                    if (dir.Processed == false)
                     {
                         allComplete = false;
                         queue.Enqueue(dir);
@@ -66,8 +66,12 @@ namespace AdventOfCode.Year2022
                 if (allComplete is false) { queue.Enqueue(d); continue; }
 
                 // all children done
-                d.Parent.Size += d.Size;
-                queue.Enqueue(d.Parent);
+                if (d.UniqueName != root.UniqueName)
+                {
+                    d.Parent.Size += d.Size;
+                    queue.Enqueue(d.Parent);
+                }
+                d.Processed = true;
                 done.Add(d.UniqueName);
             }
 
@@ -110,10 +114,13 @@ namespace AdventOfCode.Year2022
         public long Size = 0;
         public Directory Parent = null; // root has Parent = NULL
         public Dictionary<string, Directory> SubDirectories = new();
+        public int AmountOfFiles = 0;
+        public bool Processed = false;
 
         public void AddFile(string size)
         {
-            this.Size += long.Parse(size);
+            Size += long.Parse(size);
+            AmountOfFiles++;
         }
     }
 }
