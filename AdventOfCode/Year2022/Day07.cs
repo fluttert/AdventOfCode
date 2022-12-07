@@ -122,8 +122,8 @@ namespace AdventOfCode.Year2022
                 current.AddFile(parts[1], parts[0]);
             }
 
-            long totalSpace = 70000000;
-            long unusedSpaceRequired = 30000000;
+            long totalSpace = 70_000_000;
+            long unusedSpaceRequired = 30_000_000;
             long unusedSpace = totalSpace - root.DirectoryFileSize();
             long closest = long.MaxValue;
             foreach (Directory dir in tree.Values)
@@ -151,11 +151,6 @@ namespace AdventOfCode.Year2022
         public List<Directory> Children = new();
         private List<(string name, long size)> files = new();
 
-        public bool AddFile(string filename, string size)
-        {
-            return AddFile(filename, long.Parse(size));
-        }
-
         public string FullName()
         {
             string name = Name;
@@ -166,6 +161,11 @@ namespace AdventOfCode.Year2022
                 p = p.Parent;
             }
             return name;
+        }
+
+        public bool AddFile(string filename, string size)
+        {
+            return AddFile(filename, long.Parse(size));
         }
 
         public bool AddFile(string filename, long size)
