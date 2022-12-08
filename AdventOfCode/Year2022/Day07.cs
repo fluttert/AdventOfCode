@@ -10,9 +10,9 @@ namespace AdventOfCode.Year2022
         private Dictionary<string, Directory> tree = new();
         private Directory root;
 
-        public string SolvePart1(string input)
+        public Day07()
         {
-            string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            string[] lines = GetInput().Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             root = new Directory { Name = "/" };
             tree.Add(root.UniqueName, root);
             Directory current = null;
@@ -74,7 +74,10 @@ namespace AdventOfCode.Year2022
                 d.Processed = true;
                 done.Add(d.UniqueName);
             }
+        }
 
+        public string SolvePart1(string input)
+        {
             long sumOfSmallDirs = 0;
             foreach (Directory dir in tree.Values)
             {
