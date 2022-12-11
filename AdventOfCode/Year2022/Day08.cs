@@ -66,7 +66,7 @@ namespace AdventOfCode.Year2022
             }
             // dimensions
             int row = grid.Length, col = grid[0].Length;
-            int scenicScore = 0;
+            long scenicScore = 0;
 
             // Ignore the edges, are they have a view of 0, and multiplying would give 0
             for (int i = 1; i < row - 1; i++)
@@ -74,7 +74,8 @@ namespace AdventOfCode.Year2022
                 for (int j = 1; j < col - 1; j++)
                 {
                     // back track?
-                    int trees = 0, score = 1, k = i - 1;
+                    int trees = 0, k = i - 1;
+                    long score = 1;
 
                     // left // right
                     while (k >= 0) { if (grid[k][j] >= grid[i][j]) { trees++; break; } trees++; k--; }
