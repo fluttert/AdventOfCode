@@ -44,7 +44,7 @@ namespace AdventOfCode.Year2022
                 // set new minimum steps!
                 minSteps[p.x][p.y] = p.steps;
 
-                // search further: Check border of directs, then height-check, then prune if this branch should be explored (# steps)
+                // search further: Check border of direction, then height-check, then prune if this branch should be explored (# steps)
                 int maxHeight = grid[p.x][p.y] + 1, maxSteps = p.steps + 1; ;
                 if (p.x - 1 >= 0 && grid[p.x - 1][p.y] <= maxHeight && minSteps[p.x - 1][p.y] > maxSteps) { q.Enqueue((p.x - 1, p.y, p.steps + 1)); }
                 if (p.x + 1 < borderX && grid[p.x + 1][p.y] <= maxHeight && minSteps[p.x + 1][p.y] > maxSteps) { q.Enqueue((p.x + 1, p.y, p.steps + 1)); }
@@ -92,7 +92,7 @@ namespace AdventOfCode.Year2022
                 // set new minimum steps!
                 minSteps[p.x][p.y] = p.steps;
 
-                // search further: Check border of directs, then height-check, then prune if this branch should be explored (# steps)
+                // search further: Check border of direction, then height-check, then prune if this branch should be explored (# steps)
                 int maxHeight = grid[p.x][p.y] - 1, maxSteps = p.steps + 1; ;
                 if (p.x - 1 >= 0 && grid[p.x - 1][p.y] >= maxHeight && minSteps[p.x - 1][p.y] > maxSteps) { q.Enqueue((p.x - 1, p.y, p.steps + 1)); }
                 if (p.x + 1 < borderX && grid[p.x + 1][p.y] >= maxHeight && minSteps[p.x + 1][p.y] > maxSteps) { q.Enqueue((p.x + 1, p.y, p.steps + 1)); }
