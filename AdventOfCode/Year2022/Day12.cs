@@ -36,20 +36,20 @@ namespace AdventOfCode.Year2022
             q.Enqueue(start);
             while (q.Count > 0)
             {
-                var p = q.Dequeue();
+                var (x, y, steps) = q.Dequeue();
                 // break conditions
-                if (p.x == end.x && p.y == end.y) { minSteps[p.x][p.y] = p.steps; continue; }
-                if (minSteps[p.x][p.y] <= p.steps) { continue; } // ignore, took to long to get here
+                if (x == end.x && y == end.y) { minSteps[x][y] = steps; continue; }
+                if (minSteps[x][y] <= steps) { continue; } // ignore, took to long to get here
 
                 // set new minimum steps!
-                minSteps[p.x][p.y] = p.steps;
+                minSteps[x][y] = steps;
 
                 // search further: Check border of direction, then height-check, then prune if this branch should be explored (# steps)
-                int maxHeight = grid[p.x][p.y] + 1, maxSteps = p.steps + 1; ;
-                if (p.x - 1 >= 0 && grid[p.x - 1][p.y] <= maxHeight && minSteps[p.x - 1][p.y] > maxSteps) { q.Enqueue((p.x - 1, p.y, p.steps + 1)); }
-                if (p.x + 1 < borderX && grid[p.x + 1][p.y] <= maxHeight && minSteps[p.x + 1][p.y] > maxSteps) { q.Enqueue((p.x + 1, p.y, p.steps + 1)); }
-                if (p.y - 1 >= 0 && grid[p.x][p.y - 1] <= maxHeight && minSteps[p.x][p.y - 1] > maxSteps) { q.Enqueue((p.x, p.y - 1, p.steps + 1)); }
-                if (p.y + 1 < borderY && grid[p.x][p.y + 1] <= maxHeight && minSteps[p.x][p.y + 1] > maxSteps) { q.Enqueue((p.x, p.y + 1, p.steps + 1)); }
+                int maxHeight = grid[x][y] + 1, maxSteps = steps + 1; ;
+                if (x - 1 >= 0 && grid[x - 1][y] <= maxHeight && minSteps[x - 1][y] > maxSteps) { q.Enqueue((x - 1, y, steps + 1)); }
+                if (x + 1 < borderX && grid[x + 1][y] <= maxHeight && minSteps[x + 1][y] > maxSteps) { q.Enqueue((x + 1, y, steps + 1)); }
+                if (y - 1 >= 0 && grid[x][y - 1] <= maxHeight && minSteps[x][y - 1] > maxSteps) { q.Enqueue((x, y - 1, steps + 1)); }
+                if (y + 1 < borderY && grid[x][y + 1] <= maxHeight && minSteps[x][y + 1] > maxSteps) { q.Enqueue((x, y + 1, steps + 1)); }
             }
 
             return "" + minSteps[end.x][end.y];
@@ -84,20 +84,20 @@ namespace AdventOfCode.Year2022
             q.Enqueue(start);
             while (q.Count > 0)
             {
-                var p = q.Dequeue();
+                var (x, y, steps) = q.Dequeue();
                 // break conditions
-                if (grid[p.x][p.y] == 0) { result = p.steps; break; }
-                if (minSteps[p.x][p.y] <= p.steps) { continue; } // ignore, took to long to get here
+                if (grid[x][y] == 0) { result = steps; break; }
+                if (minSteps[x][y] <= steps) { continue; } // ignore, took to long to get here
 
                 // set new minimum steps!
-                minSteps[p.x][p.y] = p.steps;
+                minSteps[x][y] = steps;
 
                 // search further: Check border of direction, then height-check, then prune if this branch should be explored (# steps)
-                int maxHeight = grid[p.x][p.y] - 1, maxSteps = p.steps + 1; ;
-                if (p.x - 1 >= 0 && grid[p.x - 1][p.y] >= maxHeight && minSteps[p.x - 1][p.y] > maxSteps) { q.Enqueue((p.x - 1, p.y, p.steps + 1)); }
-                if (p.x + 1 < borderX && grid[p.x + 1][p.y] >= maxHeight && minSteps[p.x + 1][p.y] > maxSteps) { q.Enqueue((p.x + 1, p.y, p.steps + 1)); }
-                if (p.y - 1 >= 0 && grid[p.x][p.y - 1] >= maxHeight && minSteps[p.x][p.y - 1] > maxSteps) { q.Enqueue((p.x, p.y - 1, p.steps + 1)); }
-                if (p.y + 1 < borderY && grid[p.x][p.y + 1] >= maxHeight && minSteps[p.x][p.y + 1] > maxSteps) { q.Enqueue((p.x, p.y + 1, p.steps + 1)); }
+                int maxHeight = grid[x][y] - 1, maxSteps = steps + 1; ;
+                if (x - 1 >= 0 && grid[x - 1][y] >= maxHeight && minSteps[x - 1][y] > maxSteps) { q.Enqueue((x - 1, y, steps + 1)); }
+                if (x + 1 < borderX && grid[x + 1][y] >= maxHeight && minSteps[x + 1][y] > maxSteps) { q.Enqueue((x + 1, y, steps + 1)); }
+                if (y - 1 >= 0 && grid[x][y - 1] >= maxHeight && minSteps[x][y - 1] > maxSteps) { q.Enqueue((x, y - 1, steps + 1)); }
+                if (y + 1 < borderY && grid[x][y + 1] >= maxHeight && minSteps[x][y + 1] > maxSteps) { q.Enqueue((x, y + 1, steps + 1)); }
             }
 
             return "" + result;
