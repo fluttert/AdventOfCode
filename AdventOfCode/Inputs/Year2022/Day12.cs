@@ -2,7 +2,10 @@
 {
     public class Day12
     {
-        public string Input = @"abaacccccccccccccaaaaaaaccccccccccccccccccccccccccccccccccaaaaaa
+        // start using C# 11 Raw String Literals -
+        // see also: https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-11.0/raw-string-literal
+        public string Input = """
+abaacccccccccccccaaaaaaaccccccccccccccccccccccccccccccccccaaaaaa
 abaaccccccccccccccaaaaaaaaaaccccccccccccccccccccccccccccccccaaaa
 abaaaaacccccccccaaaaaaaaaaaaccccccccccccccccccccccccccccccccaaaa
 abaaaaaccccccccaaaaaaaaaaaaaacccccccccccccccccdcccccccccccccaaaa
@@ -42,6 +45,7 @@ abaaaaaaacaaacccccaaaaaaaaaccccccccccccccaaaacccccccccccccccccaa
 abaacaaaaaaaaaaaccaaaaaaaaccccccccccccccccaaaccccccccccccccccaaa
 abcccccaaaaaaaaacccaaaaaaaccccccccccccccccaacccccccccccccccccaaa
 abccccccaaaaaaaaaaaaaaaaacccccccccccccccccaaacccccccccccccaaaaaa
-abcccccaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccccccccccccccaaaaaa";
+abcccccaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccccccccccccccaaaaaa
+""";
     }
 }
