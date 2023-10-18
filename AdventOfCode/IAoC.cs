@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace AdventOfCode
+﻿namespace AdventOfCode
 {
-    
     /// <summary>
     /// Interface for Advent of Code, where each challenge has 2 parts
     /// </summary>
-    interface IAoC
+    public interface IAoC
     {
         /// <summary>
         /// Solves part 1 of an Advent of Code challenge day

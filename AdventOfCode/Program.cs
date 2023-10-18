@@ -1,8 +1,9 @@
 ﻿using System;
 
+// Using the hip top-level statement 
+// this will auto generate a static void main function anyway
 var aoc = new AdventOfCode.AdventOfCode();
 aoc.Solved2022();
-
 Console.ReadLine();
 
 namespace AdventOfCode
