@@ -101,15 +101,6 @@ namespace AdventOfCode.Year2022
                             knots[j].y = knots[j - 1].y - knots[j].y > 0 ? knots[j - 1].y - 1 : knots[j - 1].y + 1;
                         }
                     }
-
-                    // print
-                    //char[][] p = new char[5][];
-                    //for (int j = 0; j < p.Length; j++) { p[j] = "......".ToCharArray(); }
-                    //for (int j = 0; j < knots.Length; j++) { p[knots[j].y][knots[j].x] = 'X'; }
-                    //Array.Reverse(p);
-                    //for (int j = 0; j < p.Length; j++) { Console.WriteLine(new string(p[j])); }
-                    //Console.WriteLine();
-
                     path.Add(knots[9]);
 
                     // next step
