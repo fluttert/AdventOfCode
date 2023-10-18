@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Diagnostics;
+
+var aoc = new AdventOfCode.AdventOfCode();
+aoc.Solved2022();
+
+Console.ReadLine();
 
 namespace AdventOfCode
 {
-    internal class AdventOfCode
+    using System.Diagnostics;
+    public class AdventOfCode
     {
-        private static void Main()
-        {
-            var aoc = new AdventOfCode();
-            aoc.Solved2022();
 
-            Console.ReadLine();
-        }
-
-        private void Solved2022()
+        internal void Solved2022()
         {
             var aoc = new AdventOfCode();
             //aoc.Solve(new Year2022.Day01());
@@ -30,7 +28,7 @@ namespace AdventOfCode
             //aoc.Solve(new Year2022.Day12());
         }
 
-        private void Solved2021()
+        internal void Solved2021()
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2021.Day11());
@@ -46,7 +44,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2021.Day01());
         }
 
-        private void Solved2020()
+        internal void Solved2020()
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2020.Day07());
@@ -58,7 +56,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2020.Day01());
         }
 
-        private void Solved2019()
+        internal void Solved2019()
         {
             var aoc = new AdventOfCode();
             //aoc.Solve(new Year2019.Day07()); // 2 slow on part 2
@@ -70,7 +68,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2019.Day01());
         }
 
-        private void Solved2017()
+        internal void Solved2017()
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2017.Day20());
@@ -95,7 +93,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2017.Day01());
         }
 
-        private void Solved2016()
+        internal void Solved2016()
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2016.Day21());
@@ -121,7 +119,7 @@ namespace AdventOfCode
             aoc.Solve(new Year2016.Day01());
         }
 
-        private void Solved2015()
+        internal void Solved2015()
         {
             var aoc = new AdventOfCode();
             aoc.Solve(new Year2015.Day25());
