@@ -23,10 +23,11 @@ namespace AdventOfCode
             //aoc.Solve(new Year2022.Day06());
             //aoc.Solve(new Year2022.Day07());
             //aoc.Solve(new Year2022.Day08());
-            aoc.Solve(new Year2022.Day09()); // todo
+            //aoc.Solve(new Year2022.Day09());
             //aoc.Solve(new Year2022.Day10());
             //aoc.Solve(new Year2022.Day11());
             //aoc.Solve(new Year2022.Day12());
+            aoc.Solve(new Year2022.Day13());
         }
 
         internal void Solved2021()
