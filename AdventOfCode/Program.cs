@@ -1,16 +1,22 @@
 ﻿using System;
 
-// Using the hip top-level statement 
+// Using the hip top-level statement
 // this will auto generate a static void main function anyway
 var aoc = new AdventOfCode.AdventOfCode();
-aoc.Solved2022();
+aoc.Solved2023();
 Console.ReadLine();
 
 namespace AdventOfCode
 {
     using System.Diagnostics;
+
     public class AdventOfCode
     {
+        internal void Solved2023()
+        {
+            var aoc = new AdventOfCode();
+            aoc.Solve(new Year2023.Day01());
+        }
 
         internal void Solved2022()
         {
