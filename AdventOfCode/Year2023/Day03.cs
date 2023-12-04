@@ -59,9 +59,10 @@ namespace AdventOfCode.Year2023
                 for (int j = 0; j < gridLines[i].Length; j++)
                 {
                     if (char.IsDigit(gridLines[i][j]) is false) { continue; }
-                    // first pass to determine number
+                    // first pass to determine number and see which gear to tag along
                     List<char> digits = new List<char>();
                     HashSet<(int x, int y)> gears = new();
+                    
                     for (int k = j; k < gridLines[i].Length; k++)
                     {
                         if (char.IsDigit(gridLines[i][k])) { digits.Add(gridLines[i][k]); }
