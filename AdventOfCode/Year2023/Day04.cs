@@ -19,10 +19,14 @@ namespace AdventOfCode.Year2023
                 string[] card = lines[i].Split(new char[] { ':', '|' });
                 HashSet<string> winningNumbers = card[1].Split(' ', StringSplitOptions.RemoveEmptyEntries).ToHashSet();
                 string[] myNumbers = card[2].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+                // determine amount of matches
                 for (int j = 0; j < myNumbers.Length; j++)
                 {
                     if (winningNumbers.Contains(myNumbers[j])) { matches++; }
                 }
+
+                // determine score based on matches
                 if (matches > 0)
                 {
                     totalPoints += (int)Math.Pow(2, matches - 1);
@@ -40,10 +44,10 @@ namespace AdventOfCode.Year2023
             Dictionary<int, int> cards = new();
             Dictionary<int, int> matches = new();
 
-            // init dictionaries
+            // init dictionaries, assuming cards ID are 1...N
             for (int i = 0; i < lines.Length; i++) { cards.Add(i + 1, 0); }
 
-            // parse all cards 1 time
+            // parse all cards
             for (int i = 0; i < lines.Length; i++)
             {
                 // parse a scratchcard
@@ -75,8 +79,6 @@ namespace AdventOfCode.Year2023
                     cards[cardId]--;
                 }
             }
-
-            //foreach (string cardId in cards.Keys)
 
             return "" + totalCards;
         }
