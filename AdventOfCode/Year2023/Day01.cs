@@ -65,7 +65,7 @@ namespace AdventOfCode.Year2023
                 //int concatenatedNumber = int.Parse("" + digits[0] + digits[digits.Count - 1]);
                 //total += concatenatedNumber;
 
-                // IDEA to do everything with indexoff, so we dont need any temporary strings
+                // IDEA to do everything with indexof, so we dont need any temporary strings
                 int firstDigit = line.Length, lastDigit = -1;
                 char[] number = new char[2];
                 foreach (string key in writtenNumbers.Keys)
