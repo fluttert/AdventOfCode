@@ -15,7 +15,8 @@ namespace AdventOfCode
         internal void Solved2023()
         {
             var aoc = new AdventOfCode();
-            aoc.Solve(new Year2023.Day01());
+            //aoc.Solve(new Year2023.Day01());
+            aoc.Solve(new Year2023.Day02());
         }
 
         internal void Solved2022()
