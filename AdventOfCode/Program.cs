@@ -19,7 +19,8 @@ namespace AdventOfCode
             //aoc.Solve(new Year2023.Day02());
             //aoc.Solve(new Year2023.Day03());
             //aoc.Solve(new Year2023.Day04());
-            aoc.Solve(new Year2023.Day05());
+            //aoc.Solve(new Year2023.Day05()); // don't run this, Part II is bruteforce
+            aoc.Solve(new Year2023.Day06());
         }
 
         internal void Solved2022()
