@@ -68,10 +68,10 @@ namespace AdventOfCode.Year2023
         public string GetInput()
         {
             return new Inputs.Year2023.Day06Input().Input;
-            return """
-Time:      7  15   30
-Distance:  9  40  200
-""";
+//            return """
+//Time:      7  15   30
+//Distance:  9  40  200
+//""";
         }
     }
 }
