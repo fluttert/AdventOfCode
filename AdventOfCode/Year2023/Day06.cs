@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 namespace AdventOfCode.Year2023
 {
@@ -37,7 +36,7 @@ namespace AdventOfCode.Year2023
         {
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             long racetime = long.Parse(lines[0][10..].Replace(" ", "").Trim());
-            long recordDistance=long.Parse(lines[1][10..].Replace(" ", "").Trim());
+            long recordDistance = long.Parse(lines[1][10..].Replace(" ", "").Trim());
             long beatingRangeStart = -1, beatingRangeEnd = -1;
             for (long i = 0; i < racetime; i++)
             {
@@ -49,9 +48,8 @@ namespace AdventOfCode.Year2023
                     break;
                 }
             }
-            long amountOfWaysToBeatRecord = beatingRangeEnd - beatingRangeStart + 1;
 
-            return "" + amountOfWaysToBeatRecord;
+            return "" + (beatingRangeEnd - beatingRangeStart + 1);
         }
 
         private List<(int time, int distance)> ParseRaces(string input)
