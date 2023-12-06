@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace AdventOfCode.Year2023
 {
@@ -44,8 +45,10 @@ namespace AdventOfCode.Year2023
             var maps = ParseMaps(parts[1..]);
 
             long lowestLocation = long.MaxValue;
-            for (int i = 0; i < seeds.Count; i++)
+            Parallel.For(0, seeds.Count, i =>       // takes 17 minutes
+            //for (int i = 0; i < seeds.Count; i++)                // takes 36 minutes 
             {
+
                 for (long seed = seeds[i].start; seed < seeds[i].start + seeds[i].length; seed++)
                 {
                     long curPosition = seed;
@@ -65,7 +68,7 @@ namespace AdventOfCode.Year2023
                     }
                     lowestLocation = curPosition < lowestLocation ? curPosition : lowestLocation;
                 }
-            }
+            });     
             return "" + lowestLocation;
         }
 
