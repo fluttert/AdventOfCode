@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace AdventOfCode.Year2023
 {
@@ -12,16 +11,13 @@ namespace AdventOfCode.Year2023
         {
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             List<Hand> hands = new();
-            foreach (string line in lines) { hands.Add(new Hand(line)); }
-
+            foreach (string line in lines) { hands.Add(new Hand(line, false)); }
             hands.Sort();   // sort on comparer
-
             long result = 0;
             for (int i = 0; i < hands.Count; i++)
             {
                 result += hands[i].Bid * (i + 1);
             }
-
             return "" + result;
         }
 
@@ -29,29 +25,26 @@ namespace AdventOfCode.Year2023
         {
             string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
             List<Hand> hands = new();
-            foreach (string line in lines) { hands.Add(new Hand(line,true)); }
-
+            foreach (string line in lines) { hands.Add(new Hand(line, true)); }
             hands.Sort();   // sort on comparer
-
             long result = 0;
             for (int i = 0; i < hands.Count; i++)
             {
                 result += hands[i].Bid * (i + 1);
             }
-
             return "" + result;
         }
 
         public string GetInput()
         {
             return new Inputs.Year2023.Day07Input().Input;
-            return """
-32T3K 765
-T55J5 684
-KK677 28
-KTJJT 220
-QQQJA 483
-""";
+//            return """
+//32T3K 765
+//T55J5 684
+//KK677 28
+//KTJJT 220
+//QQQJA 483
+//""";
         }
     }
 
@@ -62,14 +55,14 @@ QQQJA 483
         public int Strength { get; }
         public bool IncludeJoker { get; }
 
-        public static char Joker = 'J';
+        public static readonly char Joker = 'J';
 
-        public static Dictionary<char, int> CardsOrder = new() {
+        public static readonly Dictionary<char, int> CardsOrder = new() {
             { '2', 2 }, { '3', 3 }, { '4', 4 } , { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 },
             { 'T', 10 }, { 'J', 11 }, { 'Q', 12 }, { 'K', 13 }, { 'A', 14 }
         };
 
-        public static Dictionary<char, int> CardsOrderWithJoker = new() {
+        public static readonly Dictionary<char, int> CardsOrderWithJoker = new() {
             { '2', 2 }, { '3', 3 }, { '4', 4 } , { '5', 5 }, { '6', 6 }, { '7', 7 }, { '8', 8 }, { '9', 9 },
             { 'T', 10 }, { 'J', 1 }, { 'Q', 12 }, { 'K', 13 }, { 'A', 14 }
         };
@@ -82,6 +75,11 @@ QQQJA 483
             IncludeJoker = includeJoker;
         }
 
+        /// <summary>
+        /// CompareTo function to make sure sorting can be done efficiently on collection level
+        /// </summary>
+        /// <param name="other">Hand</param>
+        /// <returns>int, positive if stronger, negative if weaker, else 0 on equal strength</returns>
         public int CompareTo(Hand other)
         {
             if (Strength > other.Strength) { return 1; }
@@ -114,6 +112,10 @@ QQQJA 483
             if (jokers.Count == 3 && strength == 4) { return 6; }   // 3 of kind upgraded to 4 of a kind
             if (jokers.Count == 1 && strength == 1) { return 2; }   // High Card will be converted to 1 pair
 
+            // TODO
+            // use queue + while loop to clean up
+            // queue<(char[], list<int>)> queue => list contains the joker indexes, and only determine strength when the joker list is empty
+
             // get all 1 or 2 place permutations (max 13^2 possibilities)
             foreach (var kvp in CardsOrderWithJoker)
             {
@@ -131,7 +133,8 @@ QQQJA 483
                         strength = curStrength > strength ? curStrength : strength;
                     }
                 }
-                else {
+                else
+                {
                     curStrength = DetermineStrength(curCard);
                     strength = curStrength > strength ? curStrength : strength;
                 }
