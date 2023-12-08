@@ -1,9 +1,7 @@
-﻿namespace AdventOfCode.Inputs.Year2023
+﻿namespace AdventOfCode.Inputs.Year2023;
+public class Day0xInput
 {
-    public class Day0xInput
-    {
-        public string Input = """
-data 
+    public string Input = """
+data
 """;
-    }
 }
