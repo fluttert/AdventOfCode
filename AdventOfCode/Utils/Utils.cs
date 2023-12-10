@@ -106,5 +106,37 @@ namespace AdventOfCode.Utils
             }
             return diff;
         }
+
+        /// <summary>Classic GCD, using Euclidian algorithm</summary>
+        /// <param name="a">First number</param>
+        /// <param name="b">Second number</param>
+        /// <returns>Long: biggest common divisor, or 0 (zero) on negative numbers and 0</returns>
+        /// <remarks>https://en.wikipedia.org/wiki/Euclidean_algorithm</remarks>
+        public static long GreatestCommonDivisor(long a, long b)
+        {
+            // do a zero check and negativity check
+            if (a <= 0 || b <= 0) { return 0; }
+
+            // force a = biggest, b = smallest
+            if (b > a) { long t = a; a = b; b = t; }
+
+            // Divide the remainders, until the first factor is found. This first factor will be the biggest factor
+            while (b != 0)
+            {
+                long temp = a % b;  // Keep substracting b from a, untill the remainder is smaller then b
+                a = b;              // b is now the biggest factor, so it becomes a
+                b = temp;           // the smaller factor will be b (or 0 when a common divider is found)
+            }
+            return a;
+        }
+
+        public static long LeastCommonMultiple(long a, long b) {
+            // do a zero check and negativity check
+            if (a <= 0 || b <= 0) { return 0; }
+            // force a = biggest, b = smallest
+            if (b > a) { long t = a; a = b; b = t; }
+            return b * (a / GreatestCommonDivisor(a, b));
+
+        }
     }
 }
