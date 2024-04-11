@@ -70,6 +70,33 @@ namespace AdventOfCodeTests.Year2016
         }
 
         [Fact]
+        public void UnscrambleMovePosition()
+        {
+            char[] password = "bdeac".ToCharArray();
+            string[] pieces = "move position 1 to position 4".Split(' ');
+            char[] result = "bcdea".ToCharArray();
+            Assert.Equal(result, day.UnscrambleMovePosition(pieces, password));
+        }
+
+        [Fact]
+        public void UnscrambleRotatePosition1()
+        {
+            char[] password = "ecabd".ToCharArray();
+            string[] pieces = "rotate based on position of letter b".Split(' ');
+            char[] result = "abdec".ToCharArray();
+            Assert.Equal(result, day.UnscrambleRotateBasedOnLetter(pieces, password));
+        }
+
+        [Fact]
+        public void UnscrambleRotatePosition2()
+        {
+            char[] password = "decab".ToCharArray();
+            string[] pieces = "rotate based on position of letter b".Split(' ');
+            char[] result = "ecabd".ToCharArray();
+            Assert.Equal(result, day.UnscrambleRotateBasedOnLetter(pieces, password));
+        }
+
+        [Fact]
         public void Part02()
         {
             // no tests
