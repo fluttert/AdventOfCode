@@ -3,7 +3,7 @@
 // Using the hip top-level statement
 // this will auto generate a static void main function anyway
 var aoc = new AdventOfCode.AdventOfCode();
-aoc.Solved2023();
+aoc.Solved2024();
 Console.ReadLine();
 
 namespace AdventOfCode
@@ -12,6 +12,20 @@ namespace AdventOfCode
 
     public class AdventOfCode
     {
+        internal void Solved2024()
+        {
+            // not saving inputs anymore
+            var aoc = new AdventOfCode();
+            //aoc.Solve(new Year2024.Day01());
+            //aoc.Solve(new Year2024.Day02());
+            //aoc.Solve(new Year2024.Day03());
+            //aoc.Solve(new Year2024.Day04());
+            //aoc.Solve(new Year2024.Day05()); // 19ms
+            //aoc.Solve(new Year2024.Day06()); // 5600ms
+            //aoc.Solve(new Year2024.Day08()); // 9ms
+            aoc.Solve(new Year2024.Day12()); // 30 ms
+        }
+
         internal void Solved2023()
         {
             var aoc = new AdventOfCode();
