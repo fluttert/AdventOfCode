@@ -102,24 +102,24 @@ namespace AdventOfCode.Year2024
 
                 // check for a clump of robots
                 int maxAdjecent = 0;
-                for (int j = 0; j < robots.Count; j++) {
-
+                for (int j = 0; j < robots.Count; j++)
+                {
                     Queue<(int x, int y)> q = new();
                     HashSet<(int x, int y)> visited = new();
                     q.Enqueue((robots[j].x, robots[j].y));
                     int adjecent = 0;
-                    while (q.Count > 0) { 
+                    while (q.Count > 0)
+                    {
                         var node = q.Dequeue();
                         if (visited.Contains(node)) { continue; }
                         visited.Add(node);
                         adjecent++;
                         if (!visited.Contains((node.x + 1, node.y)) && rp.Contains((node.x + 1, node.y))) { q.Enqueue((node.x + 1, node.y)); }
-                        if (!visited.Contains((node.x- 1, node.y)) && rp.Contains((node.x - 1, node.y))) { q.Enqueue((node.x - 1, node.y)); }
-                        if (!visited.Contains((node.x, node.y+1)) && rp.Contains((node.x, node.y +1))) { q.Enqueue((node.x, node.y+1)); }
-                        if (!visited.Contains((node.x , node.y-1)) && rp.Contains((node.x, node.y -1))) { q.Enqueue((node.x, node.y-1)); }
+                        if (!visited.Contains((node.x - 1, node.y)) && rp.Contains((node.x - 1, node.y))) { q.Enqueue((node.x - 1, node.y)); }
+                        if (!visited.Contains((node.x, node.y + 1)) && rp.Contains((node.x, node.y + 1))) { q.Enqueue((node.x, node.y + 1)); }
+                        if (!visited.Contains((node.x, node.y - 1)) && rp.Contains((node.x, node.y - 1))) { q.Enqueue((node.x, node.y - 1)); }
                     }
                     if (adjecent > maxAdjecent) { maxAdjecent = adjecent; }
-                
                 }
 
                 if (maxAdjecent > 25)
@@ -130,7 +130,6 @@ namespace AdventOfCode.Year2024
                     break;
                 }
             }
-
 
             return "" + result;
         }
