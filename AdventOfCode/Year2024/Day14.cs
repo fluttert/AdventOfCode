@@ -76,6 +76,59 @@ namespace AdventOfCode.Year2024
             long result = 0;
             int seconds = 10000;
             int width = 101, height = 103;
+            long safetyFactor = long.MaxValue;
+
+            List<(int x, int y, int vx, int vy)> robots = new();
+
+            // read input from file
+            string[] lines = input.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            foreach (string line in lines)
+            {
+                var robot = Array.ConvertAll(line.Split(new char[] { 'p', '=', ',', ' ', 'v' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+                robots.Add((robot[0], robot[1], robot[2], robot[3]));
+            }
+
+            // simulate X second (including the last second)
+            for (int i = 0; i < seconds; i++)
+            {
+                HashSet<(int x, int y)> rp = new();
+                for (int j = 0; j < robots.Count; j++)
+                {
+                    var r = robots[j];
+                    // C# module on negative numbers remain negative! => add width (for negative numbers) and module for positive
+                    r.x = (r.x + r.vx + width) % width;
+                    r.y = (r.y + r.vy + height) % height;
+                    rp.Add((r.x, r.y));
+                    robots[j] = r;
+                }
+
+                
+                // compute per quadrant
+                int q1 = 0, q2 = 0, q3 = 0, q4 = 0;
+                int middleW = width / 2, middleH = height / 2;
+                foreach (var robot in robots)
+                {
+                    if (robot.x < middleW && robot.y < middleH) { q1++; }
+                    if (robot.x < middleW && robot.y > middleH) { q3++; }
+                    if (robot.x > middleW && robot.y < middleH) { q2++; }
+                    if (robot.x > middleW && robot.y > middleH) { q4++; }
+                }
+                long curSafetyFactor = q1 * q2 * q3 * q4;
+                if (curSafetyFactor < safetyFactor) { 
+                    safetyFactor = curSafetyFactor;
+                    result = i + 1;
+                }
+            }
+
+            return "" + result;
+        }
+
+        // ~1200MS to complete
+        public string SolvePart2FirstTry(string input)
+        {
+            long result = 0;
+            int seconds = 10000;
+            int width = 101, height = 103;
             List<(int x, int y, int vx, int vy)> robots = new();
 
             // read input from file
