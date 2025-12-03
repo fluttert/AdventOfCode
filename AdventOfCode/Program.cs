@@ -30,7 +30,7 @@ namespace AdventOfCode
             //aoc.Solve(new Year2024.Day12()); // 30 ms
             //aoc.Solve(new Year2024.Day13()); // 16 ms
             //aoc.Solve(new Year2024.Day14()); // 400 ms (improved from ~1200 ms)
-            //aoc.Solve(new Year2024.Day15()); //   ms 
+            aoc.Solve(new Year2024.Day15()); //   ms 
         }
 
         internal void Solved2023()
