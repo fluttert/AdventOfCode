@@ -1,6 +1,9 @@
 #!/usr/bin/env dotnet
+using System.Diagnostics;
+string day = "Day 02";
+Console.WriteLine($"2025 - {day} Start");
+Stopwatch sw = Stopwatch.StartNew();
 
-Console.WriteLine("2025 - Day02 Start");
 
 long answer = 0;
 string[] txt = new AoC().testInput
@@ -8,7 +11,8 @@ string[] txt = new AoC().testInput
     .Select(s => s.Trim())
     .ToArray();
 
-Console.WriteLine($"Lines parsed: {txt.Length}");
+Console.WriteLine($"Lines parsed: {txt.Length} in {sw.ElapsedMilliseconds} ms");
+sw.Restart();
 
 // PART 1
 foreach (string line in txt)
@@ -28,7 +32,8 @@ foreach (string line in txt)
         }
     }
 }
-Console.WriteLine($"Answer 1: {answer}");
+Console.WriteLine($"Answer 1: {answer} in {sw.ElapsedMilliseconds} ms");
+sw.Restart();
 
 // PART 2
 answer = 0;
@@ -62,7 +67,7 @@ foreach (string line in txt)
             }
             if(onlyMatches)
             {
-                Console.WriteLine($"Number {num} matches with part {part}");
+                //Console.WriteLine($"Number {num} matches with part {part}");
                 answer+=num;
                 break;
             }
@@ -70,10 +75,10 @@ foreach (string line in txt)
         }
     }
 }
-Console.WriteLine($"Answer 2: {answer}");
+Console.WriteLine($"Answer 2: {answer} in {sw.ElapsedMilliseconds} ms");
 
+Console.WriteLine($"2025 - {day} end");
 
-Console.WriteLine("2025 - Day 02 End");
 public class AoC
 {
     public string testInput = @"11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124";
